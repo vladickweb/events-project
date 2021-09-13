@@ -1,39 +1,63 @@
-const {
-    Schema,
-    model
-} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-
-const eventSchema = new Schema({
-
+const eventSchema = new Schema(
+  {
     title: {
-        type: String,
+      type: String,
+      required: true,
     },
+
     direction: {
-        country: String,
-        city: String,
-        number: Number,
-    },
-    description: String,
-    category: {
+      country: {
         type: String,
-        enum: ['music', 'Deporte', 'Laboral', 'Culinario', 'Otro'],
+        required: true,
+      },
+      city: {
+        type: String,
+        required: true,
+      },
+      number: {
+        type: Number,
+        required: true,
+      },
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      enum: ["music", "sport", "job", "food", "other"],
+      required: true,
     },
     location: {
-        type: {
-            type: String
-        },
-        coordinates: [Number]
+      type: {
+        type: String,
+      },
+      coordinates: [Number],
     },
     price: Number,
-    image: String,
-    isAccepted: Boolean,
-    owner: Schema.Types.ObjectId
-}, {
-    timestamps: true
-})
+    image: {
+      type: String,
+      required: true,
+    },
+    isAccepted: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
 
-eventSchema.index({ location: '2dsphere' })
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+eventSchema.index({ location: "2dsphere" });
 
 const Event = model("Event", eventSchema);
 

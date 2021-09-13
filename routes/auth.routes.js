@@ -12,7 +12,6 @@ router.get("/google", passport.authenticate("google", {
 router.get("/google/redirect", passport.authenticate('google'), (req, res, next) => {
     user = req.user
     req.session.currentUser = user
-    console.log('OJOOOOOOOOOOOOOOOO',req.session.passport.user)
     res.send(user)
 });
 

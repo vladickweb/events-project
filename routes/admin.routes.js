@@ -3,16 +3,31 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 const session = require('express-session');
+const User = require('../models/User.model')
 
 router.get('/', (req, res) => {
     res.send('mostrar eventos')
 })
 
-router.get('users', (req, res) => {
-    // TODO: RENDERIZADO DE TODOS LOS USUARIOS
+router.get('/usuarios', (req, res) => {
+    res.render('admin/users')
 })
 
-router.get('/users/:id', (req, res) => {
+router.get('/usuarios/empresas', (req, res) => {
+    User
+        .find({rol: 'company'})
+        .then(companies => res.send(companies))
+        .catch(err => console.log(err))
+})
+
+router.get('/usuarios/clientes', (req, res) => {
+    User
+        .find({rol: 'client'})
+        .then(clients => res.send(clients))
+        .catch(err => console.log(err))
+})
+
+router.get('/usuarios/:id', (req, res) => {
     // TODO: VISTA EN DETALLE DEL USUARIO CON POSIBILIDAD DE BORRAR Y EDITAR
 })
 
