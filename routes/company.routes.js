@@ -8,7 +8,7 @@ const event = require("../models/Event.model");
 
 router.get("/crear", (req, res) => {
   // TODO: VISTA FORMULARIO PARA CREAR EVENTO
-  res.render("event/create-event");
+  res.render("events/create-event");
 });
 
 router.post("/crear", fileUploader.single("event-cover-image"), (req, res) => {
@@ -30,7 +30,7 @@ router.post("/crear", fileUploader.single("event-cover-image"), (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.get("/profile", (req, res) => {
+router.get("/perfil", (req, res) => {
   // TODO: PERFIL DE LA EMPRESA CON SUS EVENTOS
 });
 

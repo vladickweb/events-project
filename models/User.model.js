@@ -22,8 +22,8 @@ const userSchema = new Schema({
  
   rol: {
     type: String,
-    enum: ['admin', 'company', 'client'],
-    default: 'client'
+    enum: ['admin', 'company', 'client', 'unknown'],
+    default: 'unknown'
   },
   
   friends: {
