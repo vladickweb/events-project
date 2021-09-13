@@ -8,29 +8,33 @@
   </div>
   <div class="col-md-4">
     <label for="input" class="form-label">País</label>
-    <input type="text" class="form-control" name="country">
+    <input type="text" class="form-control" name="country" placeholder="España">
   </div>
   <div class="col-md-4">
     <label for="input" class="form-label">Ciudad</label>
-    <input type="text" class="form-control" name="city">
+    <input type="text" class="form-control" name="city" placeholder="Madrid">
   </div>
   <div class="col-md-4">
     <label for="input" class="form-label">Número</label>
-    <input type="number" class="form-control" name="number">
+    <input type="number" class="form-control" name="number" >
   </div>
-  <div class="col-12">
-    <label for="inputAddress" class="form-label">Dirección</label>
-    <input type="text" class="form-control" name="Location" placeholder="1234 Main St">
-  </div>
+   <div class="col-6">
+    <label for="inputAddress" class="form-label">Latitud</label>
+    <input type="text" class="form-control" name="lat" >
+  </div> 
+  <div class="col-6">
+    <label for="inputAddress" class="form-label">Longitud</label>
+    <input type="text" class="form-control" name="lng" >
+  </div> 
   <div class="col-md-12" >
     <label for="inputState" class="form-label">Categoria</label>
-    <select name="enum" class="form-select">
-      <option selected>Choose...</option>
+    <select name="category" class="form-select">
+      
       <option>music</option>
-      <option>Deporte</option>
-      <option>Laboral</option>
-      <option>Culinario</option>
-      <option>Otro</option>
+      <option>sport</option>
+      <option>job</option>
+      <option>food</option>
+      <option>other</option>
     </select>
   </div>
   <div class="col-md-6">
@@ -44,6 +48,11 @@
   </div>
   <div class="col-12">
     <button type="submit" class="btn btn-primary">Crear Evento</button>
+  </div>
+
+  <div class="col-12">
+    
+    <a href="/">Volver</a>
   </div>
   </div>
 </form>
