@@ -11,7 +11,34 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-    res.send(req.body)
+    const {
+        email,
+        password
+    } = req.body
+
+    if (!password || !email) {
+        res.render('auth/login', { errorMsg: 'Rellena los campos' })
+        return
+    }
+
+    User
+    .findOne({ email })
+    .then(user => {
+
+      if (!user) {
+        res.render('auth/login', { errorMsg: 'Usuario no reconocido' })
+        return
+      }
+
+      if (bcrypt.compareSync(password, user.password) === false) {
+        res.render('auth/login', { errorMsg: 'Contraseña incorrecta' })
+        return
+      }
+
+      req.session.currentUser = user
+      res.redirect('/eventos')
+    })
+    .catch(err => console.log(err))
 })
 
 
@@ -22,11 +49,15 @@ router.get('/sign-up', (req, res) => {
 
 router.post('/sign-up', (req, res) => {
 
-    let { firstname, lastname, email, password } = req.body
-    
-    // !rol ? rol = 'client' : null
-    !password ? res.render('auth/sign-up', { errorMsg: 'La contraseña no puede estar vacía' }) : null
-    !email ? res.render('auth/sign-up', { errorMsg: 'El email no puede estar vacío' }) : null
+    let {
+        firstname,
+        lastname,
+        email,
+        password
+    } = req.body
+
+        !password ? res.render('auth/sign-up', { errorMsg: 'La contraseña no puede estar vacía' }) : null
+        !email ? res.render('auth/sign-up', { errorMsg: 'El email no puede estar vacío'}) : null
 
     const name = `${firstname} ${lastname}`
 
@@ -34,7 +65,9 @@ router.post('/sign-up', (req, res) => {
         .findOne({ email })
         .then(user => {
             if (user) {
-                res.render('auth/sign-up', { errorMsg: 'Correo ya registrado' })
+                res.render('auth/sign-up', {
+                    errorMsg: 'Correo ya registrado'
+                })
                 return
             }
 
@@ -44,33 +77,48 @@ router.post('/sign-up', (req, res) => {
 
             User
                 .create({ name, email, password: hashPass })
-                .then(user => {
+                .then(() => {
                     res.redirect('/sign-up/rol')
-                    // user.rol === 'company' ? res.redirect('/empresa/crear') : res.redirect('/eventos')
                 })
         })
         .catch(err => console.log(err))
 })
 
 router.get('/sign-up/rol', (req, res) => {
-    
     res.render('auth/select-rol')
 })
 
 router.post('/sign-up/rol', (req, res) => {
 
-    const { rol } = req.body
+    const {
+        rol
+    } = req.body
+    const id = req.session.currentUser._id
 
-    res.send(req.session.currentUser)
-    
-    // let user = req.session.currentUser
-    // user.rol = rol
-    // req.session.currentUser = user
+    User
+        .findByIdAndUpdate(id, {
+            rol
+        }, {
+            new: true
+        })
+        .then(user => {
+            req.session.currentUser = user
+            return user
+        })
+        .then(user => {
+            if (user.rol === 'company') {
+                res.redirect('/empresa/crear')
+            } else {
+                res.redirect('/eventos')
+            }
+        })
+        .catch(err => console.log(err))
 
-    // res.send(user)
-    
 })
 
+router.get('/logout', (req, res) => {
+    req.session.destroy(() => res.redirect('/'))
+})
 
 
 

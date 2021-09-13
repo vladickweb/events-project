@@ -53,7 +53,9 @@
                      <p class="text-center">No tienes cuenta? <a href="/sign-up" id="signup">Regístrate ahora</a></p>
                   </div>
                </form>
-
+               {{#if errorMsg}}
+               <p>{{errorMsg}}</p>
+               {{/if}}
             </div>
          </div>
       </div>
