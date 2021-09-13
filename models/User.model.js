@@ -1,28 +1,40 @@
-const {
-  Schema,
-  model
-} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
-  _id: Schema.Types.ObjectId,
+
   googleId: {
     type: String
   },
+ 
   name: {
     type: String
   },
+  
   email: {
     type: String,
+    unique: true,
     match: /[a-z0–9!#$%&’*+/=?^_`{|}~-]+(?:\.[a-z0–9!#$%&’*+/=?^_`{|}~-]+)*@(?:[a-z0–9](?:[a-z0–9-]*[a-z0–9])?\.)+[a-z0–9](?:[a-z0–9-]*[a-z0–9])?/
   },
-  password: String,
+  
+  password: {
+    type: String,
+  },
+ 
   rol: {
     type: String,
-    enum: ['Admin', 'Company', 'User'],
-    default: 'User'
+    enum: ['admin', 'company', 'client'],
+    default: 'client'
   },
-  friends: [Schema.Types.ObjectId],
-  likedEvents: [Schema.Types.ObjectId]
+  
+  friends: {
+    type: [Schema.Types.ObjectId],
+    ref: 'User'
+  },
+ 
+  likedEvents: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Event'
+  }
 
 }, {timestamps: true});
 
