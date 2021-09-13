@@ -4,20 +4,20 @@ const {
 } = require("mongoose");
 
 
-const EventSchema = new Schema({
+const eventSchema = new Schema({
 
     title: {
         type: String,
     },
     direction: {
-        Country: String,
-        City: String,
-        Number: Number,
+        country: String,
+        city: String,
+        number: Number,
     },
     description: String,
     category: {
         type: String,
-        enum: ['Musica', 'Deporte', 'Laboral', 'Culinario', 'Otro'],
+        enum: ['music', 'Deporte', 'Laboral', 'Culinario', 'Otro'],
     },
     location: {
         type: {
@@ -35,6 +35,6 @@ const EventSchema = new Schema({
 
 eventSchema.index({ location: '2dsphere' })
 
-const Event = model("Event", EventSchema);
+const Event = model("Event", eventSchema);
 
 module.exports = Event;

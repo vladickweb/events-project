@@ -1,0 +1,49 @@
+<div class = 'container'> 
+
+
+<form class="row g-3" action = '/empresa/crear' method = 'post' enctype="multipart/form-data">
+  <div class="col-md-12">
+    <label for="input" class="form-label">Título</label>
+    <input type="text" class="form-control" name="title">
+  </div>
+  <div class="col-md-4">
+    <label for="input" class="form-label">País</label>
+    <input type="text" class="form-control" name="country">
+  </div>
+  <div class="col-md-4">
+    <label for="input" class="form-label">Ciudad</label>
+    <input type="text" class="form-control" name="city">
+  </div>
+  <div class="col-md-4">
+    <label for="input" class="form-label">Número</label>
+    <input type="number" class="form-control" name="number">
+  </div>
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">Dirección</label>
+    <input type="text" class="form-control" name="Location" placeholder="1234 Main St">
+  </div>
+  <div class="col-md-12" >
+    <label for="inputState" class="form-label">Categoria</label>
+    <select name="enum" class="form-select">
+      <option selected>Choose...</option>
+      <option>music</option>
+      <option>Deporte</option>
+      <option>Laboral</option>
+      <option>Culinario</option>
+      <option>Otro</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Descripción</label>
+    <input type="text" class="form-control" name="description">
+  </div>
+
+  <div class="col-md-6">
+    <label for="formFileMultiple" class="form-label">Imagen</label>
+<input class="form-control" type="file" name='event-cover-image' />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Crear Evento</button>
+  </div>
+  </div>
+</form>
