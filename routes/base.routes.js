@@ -5,5 +5,9 @@ router.get("/", (req, res, next) => {
 
 })
 
+router.get('/parallax', (req, res) => {
+  res.render('parallax')
+})
+
 module.exports = router;
 
