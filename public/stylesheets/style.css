@@ -71,3 +71,12 @@ form .error {
 /* #second {
   display: none;
 } */
+
+.chat {
+  height: 600px;
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+}

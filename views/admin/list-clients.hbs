@@ -17,10 +17,21 @@
                             <a href="/admin/usuarios/{{id}}/editar" class="card-link btn btn-dark btn-block">Editar</a>
                         </div>
                         <div class="col-md-6">
+
+                                {{!-- MIDLEWARE PARA ADMIN --}}
+
                             <form action="/admin/usuarios/{{id}}/borrar" method="POST">
                                 <input type="text" name="route" value="clientes" hidden>
                                 <button class="card-link btn btn-danger btn-block" name="id"
                                     value="{{id}}">Borrar</button>
+                            </form>
+
+                            {{!-- MIDDLEWARE PARA USER --}}
+
+                            <form action="/user/buscar-usuarios/{{id}}/agregar" method="POST">
+                                <input type="text" name="route" value="clientes" hidden>
+                                <button class="card-link btn btn-primary btn-block" name="id"
+                                    value="{{id}}">Añadir a amigos</button>
                             </form>
                         </div>
                     </div>

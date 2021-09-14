@@ -17,28 +17,36 @@ router.post('/login', (req, res) => {
     } = req.body
 
     if (!password || !email) {
-        res.render('auth/login', { errorMsg: 'Rellena los campos' })
+        res.render('auth/login', {
+            errorMsg: 'Rellena los campos'
+        })
         return
     }
 
     User
-    .findOne({ email })
-    .then(user => {
+        .findOne({
+            email
+        })
+        .then(user => {
 
-      if (!user) {
-        res.render('auth/login', { errorMsg: 'Usuario no reconocido' })
-        return
-      }
+            if (!user) {
+                res.render('auth/login', {
+                    errorMsg: 'Usuario no reconocido'
+                })
+                return
+            }
 
-      if (bcrypt.compareSync(password, user.password) === false) {
-        res.render('auth/login', { errorMsg: 'Contraseña incorrecta' })
-        return
-      }
+            if (bcrypt.compareSync(password, user.password) === false) {
+                res.render('auth/login', {
+                    errorMsg: 'Contraseña incorrecta'
+                })
+                return
+            }
 
-      req.session.currentUser = user
-      res.redirect('/eventos')
-    })
-    .catch(err => console.log(err))
+            req.session.currentUser = user
+            res.redirect('/eventos')
+        })
+        .catch(err => console.log(err))
 })
 
 
@@ -56,13 +64,25 @@ router.post('/sign-up', (req, res) => {
         password
     } = req.body
 
-        !password ? res.render('auth/sign-up', { errorMsg: 'La contraseña no puede estar vacía' }) : null
-        !email ? res.render('auth/sign-up', { errorMsg: 'El email no puede estar vacío'}) : null
+    if (!password) {
+        res.render('auth/sign-up', {
+            errorMsg: 'La contraseña no puede estar vacía'
+        })
+    }
+
+    if (!email) {
+        res.render('auth/sign-up', {
+            errorMsg: 'El email no puede estar vacío'
+        })
+    }
+
 
     const name = `${firstname} ${lastname}`
 
     User
-        .findOne({ email })
+        .findOne({
+            email
+        })
         .then(user => {
             if (user) {
                 res.render('auth/sign-up', {
@@ -76,8 +96,14 @@ router.post('/sign-up', (req, res) => {
             const hashPass = bcrypt.hashSync(password, salt)
 
             User
-                .create({ name, email, password: hashPass })
-                .then(() => {
+                .create({
+                    name,
+                    email,
+                    password: hashPass
+                })
+                .then((user) => {
+                    req.session.currentUser = user
+                    // res.redirect('/eventos')
                     res.redirect('/sign-up/rol')
                 })
         })
@@ -119,9 +145,5 @@ router.post('/sign-up/rol', (req, res) => {
 router.get('/logout', (req, res) => {
     req.session.destroy(() => res.redirect('/'))
 })
-
-
-
-
 
 module.exports = router;
