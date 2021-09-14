@@ -71,3 +71,10 @@ form .error {
 /* #second {
   display: none;
 } */
+
+#map{
+
+  height: 300px;
+
+  background-color: #ff0000;
+}
