@@ -4,6 +4,7 @@ const passport = require("passport");
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 const session = require('express-session');
 const Event = require('../models/Event.model')
+const User = require('../models/User.model')
 
 
 
@@ -34,12 +35,24 @@ router.post('/:id/reserve', (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.get('/:id/contact', (req, res) => {
-    // TODO: FORMULARIO DE CONTACTO CON EVENTO
+router.get('/:id/contacto', (req, res) => {
+    // TODO: FORMULARIO DE CONTACTO CON EVENTO -------- COMPLETAR ENVIO DE CORREO
+     const { id } = req.params;
+
+     Event
+        .findById(id)
+        .populate('owner')
+        // .then((event) => res.send(event))
+        .then((event) => res.render("user/contact", event))
+
+        .catch((err) => console.log(err));
+    
 })
 
-router.post('/:id/contact', (req, res) => {
+router.post('/:id/contacto', (req, res) => {
     //TODO: ENVIAR FORMUARIO DE CONTACTO
+
+res.redirect('/')
 })
 
 

@@ -1,1 +1,17 @@
-<h1>vista de eventos</h1>
+<div class='container' >
+
+<h1> Eventos :D </h1>
+{{#each events}}
+<div class="card mb-12">
+  <img src="{{image}}" class="card-img-top" alt="{{title}}">
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-text">{{description}}.</p>
+    <p class="card-text"><small class="text-muted">{{direction.city}}</small></p>
+    <button type="submit" class="btn btn-danger">Reservar</button>
+    <a href='/eventos/{{id}}'type="submit" class="btn btn-dark">Ver detalles</a>
+  </div>
+</div>
+
+  {{/each}}
+</div>
