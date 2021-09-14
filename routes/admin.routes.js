@@ -16,19 +16,18 @@ router.get('/usuarios', (req, res) => {
 router.get('/usuarios/empresas', (req, res) => {
     User
         .find({rol: 'company'})
-        .then(companies => res.send(companies))
+        .then(companies => res.render('admin/list-companies', { companies }))
         .catch(err => console.log(err))
 })
 
 router.get('/usuarios/clientes', (req, res) => {
     User
         .find({rol: 'client'})
-        .then(clients => res.send(clients))
+        .then(clients => res.render('admin/list-clients', { clients }))
         .catch(err => console.log(err))
 })
 
 router.get('/usuarios/:id', (req, res) => {
-    // TODO: VISTA EN DETALLE DEL USUARIO CON POSIBILIDAD DE BORRAR Y EDITAR
     const { id } = req.params
 
     User
@@ -39,8 +38,7 @@ router.get('/usuarios/:id', (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.get('/usuarios/:id/edit', (req, res) => {
-    //TODO: VISTA DE EDITRAR EL USUARIO 
+router.get('/usuarios/:id/editar', (req, res) => {
     const { id } = req.params
     
     User
@@ -49,12 +47,23 @@ router.get('/usuarios/:id/edit', (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.post('/usuarios/:id/edit', (req, res) => {
-    // TODO: VISTA PARA ENVIAR EL FORMULARIO
+router.post('/usuarios/:id/editar', (req, res) => {
+
+    const { id } = req.params
+    const { name, email } = req.body
+    User
+        .findByIdAndUpdate(id, {name, email}, {new: true})
+        .then(() => res.redirect(`/admin/usuarios/${id}`))
+        .catch(err => console.log(err))
 })
 
-router.post('/usuarios/:id/remove', (req, res) => {
-    // TODO: BOTON DE ELIMINAR USUARIO
+router.post('/usuarios/:id/borrar', (req, res) => {
+    const { id, route } = req.body
+
+    User
+        .findByIdAndDelete(id)
+        .then(res.redirect(`/admin/usuarios/${route}`))
+        .catch(err => console.log(err))
 })
 
 
