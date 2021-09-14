@@ -6,6 +6,7 @@ const session = require("express-session");
 const Event = require("../models/Event.model");
 const CDNupload  = require("../config/cloudynary.config");
 const transporter = require("../config/mailing.config");
+const User = require("../models/User.model");
 
 router.get("/", (req, res) => {
   Event.find().then((events) => res.render("events/list-events", { events }));

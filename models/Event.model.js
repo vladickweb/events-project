@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const {Schema, model} = require("mongoose")
 
 const eventSchema = new Schema(
   {
@@ -12,35 +12,44 @@ const eventSchema = new Schema(
         type: String,
         required: true,
       },
+
       city: {
         type: String,
         required: true,
       },
+
       number: {
         type: Number,
         required: true,
       },
     },
+
     description: {
       type: String,
       required: true,
     },
+
     category: {
       type: String,
       enum: ["music", "sport", "job", "food", "other"],
       required: true,
     },
+
     location: {
       type: {
         type: String,
       },
       coordinates: [Number],
     },
+
     price: Number,
+
     image: {
       type: String,
+
       required: true,
     },
+
     isAccepted: {
       type: Boolean,
       required: true,
@@ -49,16 +58,19 @@ const eventSchema = new Schema(
 
     owner: {
       type: Schema.Types.ObjectId,
+
       ref: "User",
     },
   },
   {
     timestamps: true,
   }
-);
+)
 
-eventSchema.index({ location: "2dsphere" });
+eventSchema.index({
+  location: "2dsphere",
+})
 
-const Event = model("Event", eventSchema);
+const Event = model("Event", eventSchema)
 
-module.exports = Event;
+module.exports = Event
