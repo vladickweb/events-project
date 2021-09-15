@@ -48,7 +48,7 @@ router.get('/grupos', (req, res) => {
 	// TODO: listado de grupos ---------- ERRROR SI ESTÁ VACÍO
 	const id = req.session.currentUser._id
 
-	Group.find({owner: id})
+	Group.find({$or: [ {owner: id} , {users: { $in: id }}]})
 		.then((groups) => res.render('group/list-groups', {groups}))
 		.catch((err) => console.log(err))
 })
@@ -85,7 +85,7 @@ router.get('/grupos/:id', (req, res) => {
 	const user = req.session.currentUser
 
 	Group.findById(id)
-		.then(() => res.render('group/chat', user))
+		.then(() => res.render('group/chat', { user, id }))
 		.catch((err) => console.log(err))
 })
 

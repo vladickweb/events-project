@@ -38,18 +38,19 @@ router.get('/:id/contacto', (req, res) => {
 
 router.post('/:id/contacto', (req, res) => {
 	//TODO: ENVIAR FORMUARIO DE CONTACTO
-	const {subject, message, email} = req.body
+	const {from, message, to} = req.body
 
+	// res.send(req.body)
 	transporter
 		.sendMail({
-			from: '"${id}" ',
-			to: email,
-			subject: subject,
+			from: `contacto web <<popinoreloaded@gmail.com>>`,
+			to,
+			subject: `Solicitud de contacto`,
 			text: message,
-			html: `<b>${message}</b>`,
+			html: `<b>${message}</b><br/>CLIENTE: ${from}`,
 		})
-		.then((info) => res.render('message', {email, subject, message, info}))
-		.catch((error) => console.log(error))
+		.then((info) => res.send(info))
+		.catch(err => console.log(err))
 })
 
 
