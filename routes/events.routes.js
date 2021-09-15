@@ -1,9 +1,12 @@
 const router = require('express').Router()
 const Event = require('../models/Event.model')
 const transporter = require('../config/mailing.config')
+const User = require('../models/User.model')
 
 router.get('/', (req, res) => {
-	Event.find().then((events) => res.render('events/list-events', {events}))
+	Event.find({isAccepted: true}).then((events) =>
+		res.render('events/list-events', {events})
+	)
 })
 
 router.get('/:id', (req, res) => {
@@ -11,6 +14,7 @@ router.get('/:id', (req, res) => {
 	const googleApi = process.env.MAPS_API
 
 	Event.findById(id)
+		// .then(event => res.send(event))
 		.then((event) => res.render('events/details-event', {event, googleApi}))
 		.catch((err) => console.log(err))
 })
@@ -19,7 +23,7 @@ router.post('/:id/reserve', (req, res) => {
 	const {id} = req.params
 
 	Event.findById(id)
-		.then((event) => {
+		.then(() => {
 			res.session.currentUser._id.push(id)
 		})
 		.catch((err) => console.log(err))
@@ -52,24 +56,12 @@ router.post('/:id/contacto', (req, res) => {
 		.catch((error) => console.log(error))
 })
 
-
-// TODO: REVISAR RUTA
-router.get('/reserva/:id', (req, res) => {
-	User.find()
-
-		.then((event) => res.render('events/reserve', event))
-
-		.catch((err) => console.log(err))
-})
-
 router.post('/reserva/:id', (req, res) => {
-	const id = req.params
+	const {id} = req.params
+	const userId = req.session.currentUser._id
 
-	User.findByIdAndUpdate({$push: {user: id}}, {new: true})
-		.then((user) => {
-			req.session.currentUser = user
-			res.redirect('/events/list-events')
-		})
+	Event.findByIdAndUpdate(id, {$push: {reserve: userId}}, {new: true})
+		.then(() => res.redirect('/eventos'))
 		.catch((err) => console.log(err))
 })
 

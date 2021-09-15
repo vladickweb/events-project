@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const User = require('../models/User.model')
+const Event = require('../models/Event.model')
 
 router.get('/', (req, res) => {
 	res.send('mostrar eventos')
@@ -53,6 +54,34 @@ router.post('/usuarios/:id/borrar', (req, res) => {
 
 	User.findByIdAndDelete(id)
 		.then(res.redirect(`/admin/usuarios/${route}`))
+		.catch((err) => console.log(err))
+})
+
+router.get('/usuarios/empresas/eventos', (req, res) => {
+
+	
+	Event.find({isAccepted: false})
+		.then((events) => res.render('admin/list-events-admin', {events}))
+		.catch((err) => console.log(err))
+})
+
+
+router.post('/usuarios/empresas/:id/eventos/borrar', (req,res) => {
+
+	 const {id} = req.params
+	 console.log(id)
+	 Event.findByIdAndDelete(id)
+
+			.then(() => res.redirect(`/admin/usuarios/empresas/eventos`))
+			.catch((err) => console.log(err))
+})
+
+router.post('/usuarios/empresas/:id/eventos/aceptar', (req, res) => {
+	const {id} = req.params
+
+	Event.findByIdAndUpdate(id, {isAccepted: true})
+
+		.then(() => res.redirect(`/admin/usuarios/empresas/eventos`))
 		.catch((err) => console.log(err))
 })
 

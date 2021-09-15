@@ -2,7 +2,46 @@
 
 	<h1> Bienvenido! {{name}} </h1>
 
+	<div class='container mt-5'>
+	<div class='row justify-content-center'>
+		
+			<div class='col-md-6'>
 
+				<div class='card' style='width: 18rem;'>
+					<img class='card-img-top' src='{{image}}' alt='{{name}}' />
+					<div class='card-body'>
+						<h5 class='card-title'>{{name}}</h5>
+						<hr />
+					</div>
+
+					<div class='card-body'>
+						<h5>{{email}}</h5>
+						<div class='row justify-content-center'>
+							<div class='col-md-6'>
+								<a
+									href='user/editar-perfil/{{id}}'
+									class='card-link btn btn-dark btn-block'
+								>Editar</a>
+							</div>
+							<div class='col-md-6'>
+
+                            {{!-- MIDLEWARE PARA ADMIN --}}
+
+								{{! MIDDLEWARE PARA USER }}
+
+                            <form action="/user/buscar-usuarios/{{id}}/agregar" method="POST">
+                                <input type="text" name="route" value="clientes" hidden>
+                                <button class="card-link btn btn-primary btn-block" name="id" value="{{id}}">Añadir a
+                                    amigos</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
 	<br>
 
 	<a href="user/editar-perfil/{{id}}">Edita tu perfil</a>

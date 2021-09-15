@@ -54,6 +54,8 @@ router.get('/perfil', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
+
+
 router.get('/perfil/editar', (req, res) => {
 
 	const id = req.session.currentUser._id
@@ -76,5 +78,7 @@ router.post('/estadisticas', (req, res) => {
 
 	Event.findById(id).then(res.render('company/profile'))
 })
+
+
 
 module.exports = router

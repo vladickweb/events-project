@@ -1,21 +1,22 @@
 <div class='container'>
 
-	<h1>detalles del evento {{title}}</h1>
+	<h1>detalles del evento {{event.title}}</h1>
 
 
 	<div class="card">
 		<h5 class="card-header"> :D </h5>
 		<div class="card-body">
-			<h5 class="card-title">{{description}}</h5>
-			<p class="card-text"> Lugar: {{direction.country}}, {{direction.city}}</p>
+			<h5 class="card-title">{{event.description}}</h5>
+			<p class="card-text"> Lugar: {{event.direction.country}}, {{event.direction.city}}</p>
 
-			<p class="card-text">Categoria: {{category}}</p>
+			<p class="card-text">Categoria: {{event.category}}</p>
 			<a href="/eventos" class="btn btn-primary">Volver</a>
 			<a href="/" class="btn btn-dark">Reserva ya!</a>
 
-			<a href="{{id}}/contacto" class="btn btn-danger">Contactar!</a>
+			<a href="{{event.id}}/contacto" class="btn btn-danger">Contactar!</a>
 		</div>
 	</div>
+	
 
 	<h1>Mapa del evento</h1>
 	<hr />

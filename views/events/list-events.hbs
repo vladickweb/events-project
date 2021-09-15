@@ -8,10 +8,13 @@
 			<h5 class="card-title">{{title}}</h5>
 			<p class="card-text">{{description}}.</p>
 			<p class="card-text"><small class="text-muted">{{direction.city}}</small></p>
-			<button type="submit" class="btn btn-danger">Reservar</button>
+
+			<form action="/eventos/reserva/{{id}}" method="POST">
+				<button type="submit" class="btn btn-danger">Reservar</button>
+			</form>
+			
 			<a href='/eventos/{{id}}' type="submit" class="btn btn-dark">Ver detalles</a>
 		</div>
 	</div>
-
 	{{/each}}
 </div>

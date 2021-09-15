@@ -1,7 +1,8 @@
 body {
 	/* padding-top:4.2rem; */
 	/* padding-bottom: 4.2rem; */
-	background: rgb(255, 255, 255);
+
+	/* background-image: url('https://image.freepik.com/free-vector/white-abstract-background_23-2148810113.jpg'); */
 }
 a {
 	text-decoration: none !important;
@@ -77,4 +78,8 @@ form .error {
 .chat {
 	height: 600px;
 	width: 100%;
+}
+
+.centered {
+	margin: 0 auto;
 }

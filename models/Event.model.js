@@ -61,6 +61,11 @@ const eventSchema = new Schema(
 
 			ref: 'User',
 		},
+
+		reserve: [{
+			type: Schema.Types.ObjectId,
+			ref: 'User',
+		}],
 	},
 	{
 		timestamps: true,

@@ -1,0 +1,27 @@
+<div class='container'>
+
+	<h1> Eventos :D </h1>
+
+	{{#each events}}
+		<div class='card mb-5'>
+			<img src='{{image}}' class='card-img-top' alt='{{title}}' />
+			<div class='card-body'>
+				<h5 class='card-title'>{{title}}</h5>
+				<p class='card-text'>{{description}}.</p>
+				<p class='card-text'><small
+						class='text-muted'
+					>{{direction.city}}</small></p>
+				 <form  action="/admin/usuarios/empresas/{{id}}/eventos/aceptar" method='POST'>
+
+				<button type="submit" class="btn btn-dark"> Aceptar </button>
+				
+			</form> 
+
+            <form action="/admin/usuarios/empresas/{{id}}/eventos/borrar" method="POST">
+                <button type="submit" class="btn btn-dark"> Rechazar </button>
+            </form>
+			</div>
+		</div>
+
+	{{/each}}
+</div>
