@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-8">
-			<div class="container border chat">
+			<div class="container border chat" id="chat-body">
 				<div class="chat-body">
 
 				</div>
@@ -13,8 +13,9 @@
 
 			<form id="newMessageForm">
 				<label>
-					<input name="name" cols="30" rows="10" value="{{this._id}}" hidden></input>
+					<input name="name" cols="30" rows="10" value="{{user._id}}" hidden></input>
 					<input class="input-chat" name="body" rows="5" cols="100"></input>
+					<input name="id" cols="30" rows="10" value="{{id}}" hidden></input>
 				</label>
 				<input class="btn btn-dark " type="submit" name="body">
 			</form>

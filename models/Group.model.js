@@ -13,12 +13,6 @@ const groupSchema = new Schema(
 				ref: 'User',
 			},
 		],
-		message: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: 'Message',
-			},
-		],
 		owner: {
 			type: Schema.Types.ObjectId,
 			ref: 'User',
