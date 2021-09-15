@@ -1,19 +1,20 @@
-const { Schema, model } = require("mongoose");
+const {Schema, model} = require('mongoose')
 
-const messageSchema = new Schema({
-
+const messageSchema = new Schema(
+  {
     name: {
-        type: Schema.Types.ObjectId,    
-        ref: User
+      type: Schema.Types.ObjectId,
+      ref: 'User',
     },
 
     body: {
-        type: String,
-        required: true
-    }
+      type: String,
+      required: true,
+    },
+  },
+  {timestamps: true}
+)
 
-}, {timestamps: true});
-
-const Message = model("Message", messageSchema)
+const Message = model('Message', messageSchema)
 
 module.exports = Message

@@ -1,30 +1,32 @@
 <div class='container'>
 
-<h1>detalles del evento {{title}}</h1>
+	<h1>detalles del evento {{title}}</h1>
 
 
-<div class="card">
-  <h5 class="card-header"> :D </h5>
-  <div class="card-body">
-    <h5 class="card-title">{{description}}</h5>
-    <p class="card-text"> Lugar: {{direction.country}}, {{direction.city}}</p>
+	<div class="card">
+		<h5 class="card-header"> :D </h5>
+		<div class="card-body">
+			<h5 class="card-title">{{description}}</h5>
+			<p class="card-text"> Lugar: {{direction.country}}, {{direction.city}}</p>
 
-    <p class="card-text">Categoria: {{category}}</p>
-    <a href="/eventos" class="btn btn-primary">Volver</a>
-    <a href="/" class="btn btn-dark">Reserva ya!</a>
-    
-    <a href="{{id}}/contacto" class="btn btn-danger">Contactar!</a>
-  </div>
-</div>
+			<p class="card-text">Categoria: {{category}}</p>
+			<a href="/eventos" class="btn btn-primary">Volver</a>
+			<a href="/" class="btn btn-dark">Reserva ya!</a>
 
-    <h1>Mapa del evento</h1>
-    <hr>
-    <figure id="map"></figure>
+			<a href="{{id}}/contacto" class="btn btn-danger">Contactar!</a>
+		</div>
+	</div>
 
-    <script src="/js/directions.js"></script>
-    {{!-- <script src="/js/mapStyles.js"></script> --}}
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/js/events-map-setup.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgYfwJx8KwPaeC1HksP3qTZgJoAR_zMrA&callback=initMap"></script>
+	<h1>Mapa del evento</h1>
+	<hr>
+	<figure id="map"></figure>
+
+	<script src="/js/directions.js"></script>
+	{{!--
+	<script src="/js/mapStyles.js"></script> --}}
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="/js/events-map-setup.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgYfwJx8KwPaeC1HksP3qTZgJoAR_zMrA&callback=initMap"></script>
 
 </div>
