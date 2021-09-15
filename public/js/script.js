@@ -1,47 +1,41 @@
 document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-    console.log("project-2 JS imported successfully!");
-  },
-  false
-);
+	'DOMContentLoaded',
+	() => {
+		console.log('project-2 JS imported successfully!')
+	},
+	false
+)
 
-
-
-
-  
 //          $(function() {
 //            $("form[name='login']").validate({
 //              rules: {
-               
+
 //                email: {
 //                  required: true,
 //                  email: true
 //                },
 //                password: {
 //                  required: true,
-                 
+
 //                }
 //              },
 //               messages: {
 //                email: "Please enter a valid email address",
-              
+
 //                password: {
 //                  required: "Please enter password",
-                
+
 //                }
-               
+
 //              },
 //              submitHandler: function(form) {
 //                form.submit();
 //              }
 //            });
 //          });
-         
-
 
 // $(function() {
-  
+
 //   $("form[name='registration']").validate({
 //     rules: {
 //       firstname: "required",
@@ -55,7 +49,7 @@ document.addEventListener(
 //         minlength: 5
 //       }
 //     },
-    
+
 //     messages: {
 //       firstname: "Please enter your firstname",
 //       lastname: "Please enter your lastname",
@@ -65,11 +59,9 @@ document.addEventListener(
 //       },
 //       email: "Please enter a valid email address"
 //     },
-  
+
 //     submitHandler: function(form) {
 //       form.submit();
 //     }
 //   });
 // });
-
-
