@@ -1,8 +1,8 @@
-<div class='container'>
-	<div class='row justify-content-center'>
-		<div class='col-md-8'>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-8">
 
-			<form action='/user/grupos/crear' method='POST'>
+			<form action="/user/grupos/crear" method="POST">
 
 				<div class='form-group'>
 					<label for='name'>Nombre del grupo</label>
@@ -30,7 +30,23 @@
 					</div>
 				{{/each}}
 
-				<button type='submit' class='btn btn-dark'>Crear Grupo</button>
+				<div class="form-group">
+					<label for="name">Nombre del grupo</label>
+					<input type="text" class="form-control" id="name" placeholder="Introduce el nombre del grupo"
+						name="title">
+				</div>
+				Selecciona a los integrantes del grupo
+				{{#each friends}}
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="{{id}}" id="defaultCheck1" name="users">
+					<label class="form-check-label" for="defaultCheck1">
+						{{name}}
+					</label>
+				</div>
+				{{/each}}
+
+				<button type="submit" class="btn btn-dark">Crear Grupo</button>
+
 
 			</form>
 		</div>

@@ -1,8 +1,4 @@
 const router = require('express').Router()
-const mongoose = require('mongoose')
-const passport = require('passport')
-const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
-const session = require('express-session')
 const User = require('../models/User.model')
 const bcrypt = require('bcrypt')
 
@@ -86,7 +82,6 @@ router.post('/sign-up', (req, res) => {
 				password: hashPass,
 			}).then((user) => {
 				req.session.currentUser = user
-				// res.redirect('/eventos')
 				res.redirect('/sign-up/rol')
 			})
 		})
@@ -101,15 +96,7 @@ router.post('/sign-up/rol', (req, res) => {
 	const {rol} = req.body
 	const id = req.session.currentUser._id
 
-	User.findByIdAndUpdate(
-		id,
-		{
-			rol,
-		},
-		{
-			new: true,
-		}
-	)
+	User.findByIdAndUpdate(id, {rol}, {new: true})
 		.then((user) => {
 			req.session.currentUser = user
 			return user

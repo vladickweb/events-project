@@ -1,8 +1,4 @@
 const router = require('express').Router()
-const mongoose = require('mongoose')
-const passport = require('passport')
-const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
-const session = require('express-session')
 const User = require('../models/User.model')
 const Group = require('../models/Group.model')
 
@@ -14,16 +10,14 @@ router.get('/', (req, res) => {
 })
 
 router.get('/editar-perfil/:id', (req, res) => {
-	// TODO: FORMULARIO DE EDICIÓN DE PERFIL CON SUS DATOS
-
 	const {id} = req.params
+
 	User.findById(id)
 		.then((user) => res.render('user/edit-user', user))
 		.catch((err) => console.log(err))
 })
 
 router.post('/editar-perfil/:id', (req, res) => {
-	// TODO: FORMULARIO DE ENVIO DE PERFIL CON LOS DATOS
 	const {id} = req.params
 	const {name} = req.body
 
@@ -33,7 +27,6 @@ router.post('/editar-perfil/:id', (req, res) => {
 })
 
 router.get('/buscar-usuarios', (req, res) => {
-	// TODO: LISTADO DE USUARIOS Y BÚSQUEDA DE AMIGOS
 	User.find({rol: 'client'})
 		.then((clients) => res.render('admin/list-clients', {clients}))
 		.catch((err) => console.log(err))
@@ -49,7 +42,6 @@ router.post('/buscar-usuarios/:id/agregar', (req, res) => {
 			res.redirect('/user/buscar-usuarios')
 		})
 		.catch((err) => console.log(err))
-	// TODO: AÑADIR USUARIOS A AMIGOS
 })
 
 router.get('/grupos', (req, res) => {
@@ -60,9 +52,9 @@ router.get('/grupos', (req, res) => {
 		.then((groups) => res.render('group/list-groups', {groups}))
 		.catch((err) => console.log(err))
 })
+
 router.get('/amigos', (req, res) => {
 	const id = req.session.currentUser._id
-	// res.send(id)
 
 	User.findById(id)
 		.populate('friends')
@@ -90,9 +82,11 @@ router.post('/grupos/crear', (req, res) => {
 
 router.get('/grupos/:id', (req, res) => {
 	const {id} = req.params
+	const user = req.session.currentUser
 
 	Group.findById(id)
-		.then((group) => res.render('group/chat'))
+		.then(() => res.render('group/chat', user))
 		.catch((err) => console.log(err))
 })
+
 module.exports = router

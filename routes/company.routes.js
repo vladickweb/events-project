@@ -39,9 +39,8 @@ router.post('/crear', fileUploader.single('event-cover-image'), (req, res) => {
 		image: req.file.path,
 		owner,
 	})
-		.then((event) => {
+		.then(() => {
 			res.redirect('/empresa/crear')
-			//   res.redirect("/");
 		})
 		.catch((err) => console.log(err))
 })
@@ -55,8 +54,7 @@ router.get('/perfil', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.get('/perfil/editar/:id', (req, res) => {
-	// TODO: FORMULARIO DE EDICIÓN DE PERFIL CON SUS DATOS
+router.get('/perfil/editar', (req, res) => {
 
 	const id = req.session.currentUser._id
 
@@ -66,7 +64,6 @@ router.get('/perfil/editar/:id', (req, res) => {
 })
 
 router.post('/perfil/editar/:id', (req, res) => {
-	// TODO: FORMULARIO DE ENVIO DE PERFIL CON LOS DATOS
 	const id = req.session.currentUser._id
 	const {name} = req.body
 	User.findByIdAndUpdate(id, {name}, {new: true})
@@ -75,7 +72,6 @@ router.post('/perfil/editar/:id', (req, res) => {
 })
 
 router.post('/estadisticas', (req, res) => {
-	// TODO: VISTA PARA VER ESTADÍSTICAS DE RESERVAS
 	const {id} = req.params
 
 	Event.findById(id).then(res.render('company/profile'))

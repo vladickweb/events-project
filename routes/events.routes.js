@@ -1,12 +1,6 @@
 const router = require('express').Router()
-const mongoose = require('mongoose')
-const passport = require('passport')
-const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
-const session = require('express-session')
 const Event = require('../models/Event.model')
-const CDNupload = require('../config/cloudynary.config')
 const transporter = require('../config/mailing.config')
-const User = require('../models/User.model')
 
 router.get('/', (req, res) => {
 	Event.find().then((events) => res.render('events/list-events', {events}))
@@ -37,7 +31,6 @@ router.get('/:id/contacto', (req, res) => {
 
 	Event.findById(id)
 		.populate('owner')
-		// .then((event) => res.send(event))
 		.then((event) => res.render('user/contact', event))
 
 		.catch((err) => console.log(err))
@@ -45,8 +38,6 @@ router.get('/:id/contacto', (req, res) => {
 
 router.post('/:id/contacto', (req, res) => {
 	//TODO: ENVIAR FORMUARIO DE CONTACTO
-
-	// REVISAR
 	const {subject, message, email} = req.body
 
 	transporter
@@ -61,7 +52,8 @@ router.post('/:id/contacto', (req, res) => {
 		.catch((error) => console.log(error))
 })
 
-// rutas para las reservas de eventos
+
+// TODO: REVISAR RUTA
 router.get('/reserva/:id', (req, res) => {
 	User.find()
 

@@ -1,6 +1,4 @@
-const passport = require('passport')
 module.exports = (app) => {
-	// Base Url's
 	app.use('/', require('./base.routes'))
 	app.use('/', require('./login.routes'))
 	app.use('/auth', require('./auth.routes'))

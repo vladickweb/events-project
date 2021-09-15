@@ -1,8 +1,4 @@
 const router = require('express').Router()
-const mongoose = require('mongoose')
-const passport = require('passport')
-const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
-const session = require('express-session')
 const User = require('../models/User.model')
 
 router.get('/', (req, res) => {
@@ -46,6 +42,7 @@ router.get('/usuarios/:id/editar', (req, res) => {
 router.post('/usuarios/:id/editar', (req, res) => {
 	const {id} = req.params
 	const {name, email} = req.body
+
 	User.findByIdAndUpdate(id, {name, email}, {new: true})
 		.then(() => res.redirect(`/admin/usuarios/${id}`))
 		.catch((err) => console.log(err))
