@@ -1,18 +1,6 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-5 mx-auto">
 
 
-            <div id="second">
-                <div class="myform form ">
-                    <div class="logo mb-3">
-                        <div class="col-md-12 text-center">
-                            <h1>Signup</h1>
-                        </div>
-                    </div>
-                    <form action="/sign-up" method="POST" name="registration">
-
-
+{{!-- 
                         <div class="form-group">
                             <label for="firstname">Nombre</label>
                             <input type="text" name="firstname" class="form-control" id="firstname"
@@ -67,4 +55,38 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+
+<section class="container-fluid login section-6">
+	<div class="login-dark">
+		<form method="post" action="sign-up">
+			<h2>Registro</h2>
+			<div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+			<div class="form-group"><input class="form-control" type="text" name="firstname" placeholder="Nombre">
+			</div>
+            <div class="form-group"><input class="form-control" type="text" name="lastname" placeholder="Apellidos">
+			</div>
+            <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email">
+			</div>
+           
+			<div class="form-group"><input class="form-control" type="password" name="password"
+					placeholder="Contraseña">
+			</div>
+			<div class="form-group"><button class="btn btn-primary btn-block" type="submit">Crear cuenta</button>
+				<div class="row justify-content-center mt-5">
+					<a href="/auth/google"><img class="google-icon"
+							src="http://assets.stickpng.com/thumbs/5a951939c4ffc33e8c148af2.png" alt="icono-google"></a>
+				</div>
+				<div class="row justify-content-center mt-5 text-muted">
+				 ¿Tienes una cuenta? 
+				</div>
+				<div class="row justify-content-center">
+					<a href="/sign-up"> Inicia Sesión!</a>
+				</div>
+		</form>
+	</div>
+</section>
+
+
+<script src="../../js/overflow.js"></script>

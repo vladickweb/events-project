@@ -121,8 +121,7 @@ router.post('/sign-up/rol', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-
-router.get('/logout', isLoggedIn, (req, res) => {
+router.get('/logout', (req, res) => {
 	req.session.destroy(() => {
 		res.redirect('/')
 		req.app.locals.isLoggedIn = false

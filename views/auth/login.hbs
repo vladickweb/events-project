@@ -1,18 +1,27 @@
 <section class="container-fluid login section-5">
 	<div class="login-dark">
-		<form method="post">
-			<h2 class="sr-only">Login Form</h2>
+		<form method="post" action="/login">
+			<h2 class="sr-only">Inicia Sesión</h2>
 			<div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
 			<div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email">
 			</div>
-			<div class="form-group"><input class="form-control" type="password" name="password" placeholder="Contraseña">
+			<div class="form-group"><input class="form-control" type="password" name="password"
+					placeholder="Contraseña">
 			</div>
 			<div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button>
-			<div class="row justify-content-center mt-5">
-			<a href="/auth/google"><img class="google-icon" src="http://assets.stickpng.com/thumbs/5a951939c4ffc33e8c148af2.png" alt="icono-google"></a>
-			</div>
+				<div class="row justify-content-center mt-5">
+					<a href="/auth/google"><img class="google-icon"
+							src="http://assets.stickpng.com/thumbs/5a951939c4ffc33e8c148af2.png" alt="icono-google"></a>
+				</div>
+				<div class="row justify-content-center mt-5 text-muted">
+				 ¿No tienes cuenta? 
+				</div>
+				<div class="row justify-content-center">
+					<a href="/sign-up"> Crea una cuenta aquí!</a>
+				</div>
 		</form>
 	</div>
 </section>
+
 
 <script src="../../js/overflow.js"></script>
