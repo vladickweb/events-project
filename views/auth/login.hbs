@@ -1,81 +1,18 @@
-<div class='container'>
-	<div class='row'>
-		<div class='col-md-5 mx-auto'>
-			<div id='first'>
-				<div class='myform form'>
-					<div class='logo mb-3'>
-						<div class='col-md-12 text-center'>
-							<h1>Iniciar Sesión</h1>
-						</div>
-					</div>
-
-					<form action='/login' method='POST' name='login'>
-
-						<div class='form-group'>
-							<label for='email'>Email</label>
-							<input type='email' name='email' class='form-control' id='email'
-								placeholder='Enter email' />
-						</div>
-
-						<div class='form-group'>
-							<label for='password'>Contraseña</label>
-							<input type='password' name='password' id='password' class='form-control'
-								placeholder='Enter Password' />
-						</div>
-
-						<div class='col-md-12 text-center'>
-							<button type='submit' class='btn btn-block mybtn btn-primary tx-tfm'>Iniciar Sesión</button>
-						</div>
-
-						<div class='col-md-12'>
-							<div class='login-or'>
-								<hr class='hr-or' />
-								<span class='span-or'>or</span>
-							</div>
-						</div>
-
-						{{!-- <div class="form-group">
-							<label for="password">Contraseña</label>
-							<input type="password" name="password" id="password" class="form-control"
-								placeholder="Enter Password">
-						</div> --}}
-
-{{!-- 
-						<div class="col-md-12 text-center ">
-							<button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Iniciar
-								Sesión</button>
-						</div> --}}
-
-{{!-- 
-						<div class="col-md-12 ">
-							<div class="login-or">
-								<hr class="hr-or">
-								<span class="span-or">or</span>
-							</div>
-						</div> --}}
-
-
-						<div class="col-md-12 mb-3">
-							<p class="text-center">
-								<a href="/auth/google" class="google btn mybtn">
-									<i class="fa fa-google-plus">
-									</i>
-									Signup using Google
-								</a>
-							</p>
-						</div>
-
-
-						<div class="form-group">
-							<p class="text-center">No tienes cuenta? <a href="/sign-up" id="signup">Regístrate ahora</a>
-							</p>
-						</div>
-					</form>
-					{{#if errorMsg}}
-					<p>{{errorMsg}}</p>
-					{{/if}}
-				</div>
+<section class="container-fluid login section-5">
+	<div class="login-dark">
+		<form method="post">
+			<h2 class="sr-only">Login Form</h2>
+			<div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+			<div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email">
 			</div>
-		</div>
+			<div class="form-group"><input class="form-control" type="password" name="password" placeholder="Contraseña">
+			</div>
+			<div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button>
+			<div class="row justify-content-center mt-5">
+			<a href="/auth/google"><img class="google-icon" src="http://assets.stickpng.com/thumbs/5a951939c4ffc33e8c148af2.png" alt="icono-google"></a>
+			</div>
+		</form>
 	</div>
-</div>
+</section>
+
+<script src="../../js/overflow.js"></script>

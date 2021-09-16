@@ -1,15 +1,16 @@
 const router = require('express').Router()
 const User = require('../models/User.model')
 const Group = require('../models/Group.model')
+const {isLoggedIn, checkId, checkRoles} = require('../middleware')
 
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, checkRoles('client'), (req, res) => {
 	const id = req.session.currentUser._id
 	User.findById(id)
 		.then((user) => res.render('user/profile', user))
 		.catch((err) => console.log(err))
 })
 
-router.get('/editar-perfil/:id', (req, res) => {
+router.get('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
 	const {id} = req.params
 
 	User.findById(id)
@@ -17,7 +18,7 @@ router.get('/editar-perfil/:id', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.post('/editar-perfil/:id', (req, res) => {
+router.post('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
 	const {id} = req.params
 	const {name} = req.body
 
@@ -26,13 +27,13 @@ router.post('/editar-perfil/:id', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.get('/buscar-usuarios', (req, res) => {
+router.get('/buscar-usuarios', isLoggedIn, checkRoles('client'), (req, res) => {
 	User.find({rol: 'client'})
 		.then((clients) => res.render('admin/list-clients', {clients}))
 		.catch((err) => console.log(err))
 })
 
-router.post('/buscar-usuarios/:id/agregar', (req, res) => {
+router.post('/buscar-usuarios/:id/agregar', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
 	const user = req.session.currentUser
 	const {id} = req.body
 
@@ -44,7 +45,7 @@ router.post('/buscar-usuarios/:id/agregar', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.get('/grupos', (req, res) => {
+router.get('/grupos', isLoggedIn, checkRoles('client'), (req, res) => {
 	// TODO: listado de grupos ---------- ERRROR SI ESTÁ VACÍO
 	const id = req.session.currentUser._id
 
@@ -53,7 +54,7 @@ router.get('/grupos', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.get('/amigos', (req, res) => {
+router.get('/amigos', isLoggedIn, checkRoles('client'), (req, res) => {
 	const id = req.session.currentUser._id
 
 	User.findById(id)
@@ -62,7 +63,7 @@ router.get('/amigos', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.get('/grupos/crear', (req, res) => {
+router.get('/grupos/crear', isLoggedIn, checkRoles('client'), (req, res) => {
 	const id = req.session.currentUser._id
 
 	User.findById(id)
@@ -71,7 +72,7 @@ router.get('/grupos/crear', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.post('/grupos/crear', (req, res) => {
+router.post('/grupos/crear', isLoggedIn, checkRoles('client'), (req, res) => {
 	const {title, users} = req.body
 	const owner = req.session.currentUser._id
 
@@ -80,7 +81,7 @@ router.post('/grupos/crear', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.get('/grupos/:id', (req, res) => {
+router.get('/grupos/:id', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
 	const {id} = req.params
 	const user = req.session.currentUser
 

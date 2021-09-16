@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const User = require('../models/User.model')
 const bcrypt = require('bcrypt')
+const {isLoggedIn} = require('../middleware')
 
 router.get('/login', (req, res) => {
 	res.render('auth/login')
@@ -33,7 +34,7 @@ router.post('/login', (req, res) => {
 				})
 				return
 			}
-
+			req.app.locals.isLoggedIn = true
 			req.session.currentUser = user
 			res.redirect('/eventos')
 		})
@@ -82,13 +83,15 @@ router.post('/sign-up', (req, res) => {
 				password: hashPass,
 			}).then((user) => {
 				req.session.currentUser = user
+				req.app.locals.isLoggedIn = true
+
 				res.redirect('/sign-up/rol')
 			})
 		})
 		.catch((err) => console.log(err))
 })
 
-router.get('/sign-up/rol', (req, res) => {
+router.get('/sign-up/rol', isLoggedIn, (req, res) => {
 	res.render('auth/select-rol')
 })
 
@@ -111,8 +114,11 @@ router.post('/sign-up/rol', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.get('/logout', (req, res) => {
-	req.session.destroy(() => res.redirect('/'))
+router.get('/logout', isLoggedIn, (req, res) => {
+	req.session.destroy(() => {
+		res.redirect('/')
+		req.app.locals.isLoggedIn = false
+	})
 })
 
 module.exports = router
