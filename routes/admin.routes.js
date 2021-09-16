@@ -24,7 +24,7 @@ router.get('/usuarios/empresas', isLoggedIn, checkRoles('admin'), (req, res) => 
 router.get('/usuarios/clientes', isLoggedIn, checkRoles('admin'), (req, res) => {
 	User
 		.find({rol: 'client'})
-		.then((clients) => res.render('admin/list-clients', {clients}))
+		.then((clients) => res.render('admin/list-clients-admin', {clients}))
 		.catch((err) => console.log(err))
 })
 

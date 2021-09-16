@@ -1,30 +1,27 @@
-<div class='container'>
-
-	<h1>detalles del evento {{event.title}}</h1>
+<div class='container text-white margin-top'>
 
 
-	<div class="card">
-		<h5 class="card-header"> :D </h5>
+
+	<div class="card transparent mb-5">
+		<h5 class="card-header">Evento: {{event.title}} </h5>
 		<div class="card-body">
-			<h5 class="card-title">{{event.description}}</h5>
+		<small>Fecha del evento: {{event.date}}</small>
+			<p class="card-title">Descripción: <br> {{event.description}}</p>
 			<p class="card-text"> Lugar: {{event.direction.country}}, {{event.direction.city}}</p>
 
 			<p class="card-text">Categoria: {{event.category}}</p>
-			<a href="/eventos" class="btn btn-primary">Volver</a>
-			<a href="/" class="btn btn-dark">Reserva ya!</a>
-
-			<a href="/eventos/{{event.id}}/contacto" class="btn btn-danger">Contactar!</a>
+			<a href="/eventos" class="btn btn-primary btn-block">Volver</a>
+			<a href="/" class="btn btn-dark btn-block">Reserva ya!</a>
+			<a href="/eventos/{{event.id}}/contacto" class="btn btn-danger btn-block">Contactar!</a>
 		</div>
 	</div>
 	
 
-	<h1>Mapa del evento</h1>
-	<hr />
+	<h1>Ubicación:</h1>
 	<input type='text' value='{{event.id}}' id='id' hidden />
 	<figure id='map'></figure>
 
 	<script src='/js/directions.js'></script>
-	{{! <script src="/js/mapStyles.js"></script> }}
 	<script src='https://unpkg.com/axios/dist/axios.min.js'></script>
 	<script src='/js/events-map-setup.js'></script>
 	<script
@@ -32,3 +29,5 @@
 	></script>
 
 </div>
+
+<script src="../../js/background-texture.js"></script>

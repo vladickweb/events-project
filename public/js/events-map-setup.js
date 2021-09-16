@@ -9,7 +9,7 @@ function initMap() {
 
 function getEvents(map, id) {
 	axios
-		.get(`http://localhost:3000/api/eventos/${id}`)
+		.get(`/api/eventos/${id}`)
 		.then((response) => {
 			printEvents(response.data, map)
 		})
