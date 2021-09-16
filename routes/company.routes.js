@@ -29,15 +29,16 @@ router.post('/crear', isLoggedIn, fileUploader.single('event-cover-image'), chec
 
 	const owner = req.session.currentUser._id
 
-	Event.create({
-		title,
-		direction,
-		description,
-		category,
-		location,
-		date: dateFormated,
-		image: req.file.path,
-		owner,
+	Event
+		.create({
+			title,
+			direction,
+			description,
+			category,
+			location,
+			date: dateFormated,
+			image: req.file.path,
+			owner,
 	})
 		.then(() => {
 			res.redirect('/empresa/crear')

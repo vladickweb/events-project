@@ -1,6 +1,6 @@
 function initMap() {
 	const map = new google.maps.Map(document.querySelector('#map'), {
-		zoom: 2,
+		zoom: 16,
 		center: directions.Madrid.coords,
 	})
 	const id = document.querySelector('#id').value
