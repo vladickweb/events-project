@@ -11,6 +11,8 @@ router.get(
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 	const user = req.user
 	req.session.currentUser = user
+	req.app.locals.isLoggedIn = true
+
 	id = user._id
 
 	User.findById(id).then((user) => {

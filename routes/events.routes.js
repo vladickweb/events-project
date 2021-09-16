@@ -2,14 +2,15 @@ const router = require('express').Router()
 const Event = require('../models/Event.model')
 const transporter = require('../config/mailing.config')
 const User = require('../models/User.model')
+const { checkId, isLoggedIn, checkRoles } = require("../middleware")
 
-router.get('/', (req, res) => {
+router.get('/', checkRoles('company', 'client'), (req, res) => {
 	Event.find({isAccepted: true}).then((events) =>
 		res.render('events/list-events', {events})
 	)
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', isLoggedIn, checkId, checkRoles('company', 'client'), (req, res) => {
 	const {id} = req.params
 	const googleApi = process.env.MAPS_API
 
@@ -19,7 +20,7 @@ router.get('/:id', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.post('/:id/reserve', (req, res) => {
+router.post('/:id/reserve', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
 	const {id} = req.params
 
 	Event.findById(id)
@@ -29,7 +30,7 @@ router.post('/:id/reserve', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.get('/:id/contacto', (req, res) => {
+router.get('/:id/contacto', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
 	// TODO: FORMULARIO DE CONTACTO CON EVENTO -------- COMPLETAR ENVIO DE CORREO
 	const {id} = req.params
 
@@ -40,7 +41,7 @@ router.get('/:id/contacto', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.post('/:id/contacto', (req, res) => {
+router.post('/:id/contacto', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
 	//TODO: ENVIAR FORMUARIO DE CONTACTO
 	const {from, message, to} = req.body
 
@@ -57,7 +58,7 @@ router.post('/:id/contacto', (req, res) => {
 		.catch(err => console.log(err))
 })
 
-router.post('/reserva/:id', (req, res) => {
+router.post('/reserva/:id', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
 	const {id} = req.params
 	const userId = req.session.currentUser._id
 

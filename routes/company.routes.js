@@ -1,19 +1,14 @@
 const router = require('express').Router()
-const mongoose = require('mongoose')
-const passport = require('passport')
-const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
-const session = require('express-session')
 const fileUploader = require('../config/cloudynary.config')
 const Event = require('../models/Event.model')
 const User = require('../models/User.model')
+const { checkId, isLoggedIn, checkRoles } = require("../middleware")
 
-router.get('/crear', (req, res) => {
-	// TODO: VISTA FORMULARIO PARA CREAR EVENTO
+router.get('/crear', isLoggedIn, checkRoles('company'), (req, res) => {
 	res.render('events/create-event')
 })
 
-router.post('/crear', fileUploader.single('event-cover-image'), (req, res) => {
-	// TODO: FORMULARIO DE CREACIÓN DE EVENTO
+router.post('/crear', isLoggedIn, fileUploader.single('event-cover-image'), checkRoles('company'), (req, res) => {
 
 	const {title, description, category, city, country, number, lat, lng} =
 		req.body
@@ -45,18 +40,16 @@ router.post('/crear', fileUploader.single('event-cover-image'), (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.get('/perfil', (req, res) => {
-	// TODO: PERFIL DE LA EMPRESA CON SUS EVENTOS
+router.get('/perfil', isLoggedIn, checkRoles('company'), (req, res) => {
 	const id = req.session.currentUser._id
 	Event.find({owner: id})
-		// .select("title direction description category location ")
 		.then((events) => res.render('company/profile', {events}))
 		.catch((err) => console.log(err))
 })
 
 
 
-router.get('/perfil/editar', (req, res) => {
+router.get('/perfil/editar', isLoggedIn, checkRoles('company'), (req, res) => {
 
 	const id = req.session.currentUser._id
 
@@ -65,7 +58,7 @@ router.get('/perfil/editar', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.post('/perfil/editar/:id', (req, res) => {
+router.post('/perfil/editar/:id', isLoggedIn, checkId, checkRoles('company'), (req, res) => {
 	const id = req.session.currentUser._id
 	const {name} = req.body
 	User.findByIdAndUpdate(id, {name}, {new: true})
@@ -73,7 +66,7 @@ router.post('/perfil/editar/:id', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.post('/estadisticas', (req, res) => {
+router.post('/estadisticas', isLoggedIn, checkRoles('company'), (req, res) => {
 	const {id} = req.params
 
 	Event.findById(id).then(res.render('company/profile'))

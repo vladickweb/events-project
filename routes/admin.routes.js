@@ -1,28 +1,29 @@
 const router = require('express').Router()
 const User = require('../models/User.model')
 const Event = require('../models/Event.model')
+const { checkId, isLoggedIn, checkRoles } = require("../middleware")
 
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
 	res.send('mostrar eventos')
 })
 
-router.get('/usuarios', (req, res) => {
+router.get('/usuarios', isLoggedIn, checkRoles('admin'), (req, res) => {
 	res.render('admin/users')
 })
 
-router.get('/usuarios/empresas', (req, res) => {
+router.get('/usuarios/empresas', isLoggedIn, checkRoles('admin'), (req, res) => {
 	User.find({rol: 'company'})
 		.then((companies) => res.render('admin/list-companies', {companies}))
 		.catch((err) => console.log(err))
 })
 
-router.get('/usuarios/clientes', (req, res) => {
+router.get('/usuarios/clientes', isLoggedIn, checkRoles('admin'), (req, res) => {
 	User.find({rol: 'client'})
 		.then((clients) => res.render('admin/list-clients', {clients}))
 		.catch((err) => console.log(err))
 })
 
-router.get('/usuarios/:id', (req, res) => {
+router.get('/usuarios/:id', isLoggedIn, checkId, checkRoles('admin'), (req, res) => {
 	const {id} = req.params
 
 	User.findById(id)
@@ -32,7 +33,7 @@ router.get('/usuarios/:id', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.get('/usuarios/:id/editar', (req, res) => {
+router.get('/usuarios/:id/editar', isLoggedIn, checkId, checkRoles('admin'), (req, res) => {
 	const {id} = req.params
 
 	User.findById(id)
@@ -40,7 +41,7 @@ router.get('/usuarios/:id/editar', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.post('/usuarios/:id/editar', (req, res) => {
+router.post('/usuarios/:id/editar', isLoggedIn, checkId, checkRoles('admin'), (req, res) => {
 	const {id} = req.params
 	const {name, email} = req.body
 
@@ -49,7 +50,7 @@ router.post('/usuarios/:id/editar', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.post('/usuarios/:id/borrar', (req, res) => {
+router.post('/usuarios/:id/borrar', isLoggedIn, checkId, checkRoles('admin'), (req, res) => {
 	const {id, route} = req.body
 
 	User.findByIdAndDelete(id)
@@ -57,7 +58,7 @@ router.post('/usuarios/:id/borrar', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.get('/usuarios/empresas/eventos', (req, res) => {
+router.get('/usuarios/empresas/eventos', isLoggedIn, checkRoles('admin'), (req, res) => {
 
 	
 	Event.find({isAccepted: false})
@@ -66,7 +67,7 @@ router.get('/usuarios/empresas/eventos', (req, res) => {
 })
 
 
-router.post('/usuarios/empresas/:id/eventos/borrar', (req,res) => {
+router.post('/usuarios/empresas/:id/eventos/borrar', isLoggedIn, checkId, checkRoles('admin'), (req,res) => {
 
 	 const {id} = req.params
 	 console.log(id)
@@ -76,7 +77,7 @@ router.post('/usuarios/empresas/:id/eventos/borrar', (req,res) => {
 			.catch((err) => console.log(err))
 })
 
-router.post('/usuarios/empresas/:id/eventos/aceptar', (req, res) => {
+router.post('/usuarios/empresas/:id/eventos/aceptar', isLoggedIn, checkId, checkRoles('admin'), (req, res) => {
 	const {id} = req.params
 
 	Event.findByIdAndUpdate(id, {isAccepted: true})

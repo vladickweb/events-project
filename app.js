@@ -17,6 +17,7 @@ require('./db')
 const projectName = 'events-project'
 
 app.locals.siteTitle = projectName
+app.locals.isLoggedIn = ""
 
 require('./routes')(app)
 
