@@ -11,33 +11,44 @@
         <h5 class="card-title">{{title}}</h5>
         <p class="card-text">{{description}}</p>
       </div>
-
-
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{direction.country}}</li>
-        <li class="list-group-item">{{direction.city}}</li>
-        <li class="list-group-item">{{category}}</li>
+
+        <li class="list-group-item">
+          <h2>Reservas</h2>
+          {{#each reserve}}
+          <h3>
+
+            {{this.name}}
+          </h3>
+          <br>
+          <p>{{this.email}}</p>
+          {{/each}}
+        </li>
+        <li class="list-group-item"><h6>Pais</h6>{{direction.country}}</li>
+        <li class="list-group-item"><h6>Ciudad</h6>{{direction.city}}</li>
+        <li class="list-group-item"><h6>Categoria</h6>{{category}}</li>
+        <li class="list-group-item"> <h6>Fecha del evento</h6>{{date}}</li>
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+
       </div>
+    </div>
+
+
+    <ul class='list-group list-group-flush'>
+      <li class='list-group-item'>{{direction.country}}</li>
+      <li class='list-group-item'>{{direction.city}}</li>
+      <li class='list-group-item'>{{category}}</li>
+    </ul>
+    <div class='card-body'>
+
+
     </div>
   </div>
 
-				<ul class='list-group list-group-flush'>
-					<li class='list-group-item'>{{direction.country}}</li>
-					<li class='list-group-item'>{{direction.city}}</li>
-					<li class='list-group-item'>{{category}}</li>
-				</ul>
-				<div class='card-body'>
-					<a href='#' class='card-link'>Card link</a>
-					<a href='#' class='card-link'>Another link</a>
-				</div>
-			</div>
-		</div>
-
   {{/each }}
 
-  <a href="/">Volver</a>
+  <a href="/eventos" class='btn-primary'>Volver</a>
+
+  <a href="/empresa/crear" class='btn-dark'>crear un evento</a>
 </div>

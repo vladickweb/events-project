@@ -66,6 +66,12 @@ const eventSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: 'User',
 		}],
+
+		date: {
+			
+			type: String,
+			required: true
+		}
 	},
 	{
 		timestamps: true,

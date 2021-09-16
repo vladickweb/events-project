@@ -1,19 +1,42 @@
 <div class='container'>
 
+
 	<h1> Eventos :D </h1>
 	{{#each events}}
+	{{date}}
 	<div class="card mb-12">
 		<img src="{{image}}" class="card-img-top" alt="{{title}}">
 		<div class="card-body">
 			<h5 class="card-title">{{title}}</h5>
+			<p class="card-text">Fecha del evento: {{date}}</p>
 			<p class="card-text">{{description}}.</p>
 			<p class="card-text"><small class="text-muted">{{direction.city}}</small></p>
 
 			<form action="/eventos/reserva/{{id}}" method="POST">
 				<button type="submit" class="btn btn-danger">Reservar</button>
 			</form>
-			
+
 			<a href='/eventos/{{id}}' type="submit" class="btn btn-dark">Ver detalles</a>
+		</div>
+		{{!-- <div class="share-btn">
+			<h5> Compartir </h5>
+			<a class="btn-facebook btn btn-warning rounded-pill" data-id="fb">Facebook</a>
+			<a class="btn btn-warning rounded-pill btn-twitter" data-id="tw">Twitter</a>
+			<a class="btn btn-warning rounded-pill btn-telegram" data-id="tg">Telegram</a>
+			<a class="btn btn-warning rounded-pill btn-mail" data-id="mail">EMail</a>
+			<a class="btn btn-warning rounded-pill btn-whatsapp" data-id="wa">Whastapp</a>
+		</div> --}}
+		<div class='redes-container'>
+			
+			<div class='share-btn'>
+				<h5> Compartelo con tus amigos!</h5>
+				<ul>
+					<li><a href="" class='facebook' data-id="fb"> <i class='fab fa-facebook-f'></i></a></li>
+					<li><a href="" class='twitter' data-id="tw"> <i class='fab fa-twitter'></i></a> </li>
+					<li><a href="" class='facebook' data-id="tg"> <i class='fab fa-telegram'></i></a></li>
+					<li><a href="" class='facebook' data-id="wa"> <i class='fab fa-whatsapp'></i></a> </li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	{{/each}}

@@ -3,8 +3,8 @@
 	<h1> Bienvenido! {{name}} </h1>
 
 	<div class='container mt-5'>
-	<div class='row justify-content-center'>
-		
+		<div class='row justify-content-center'>
+
 			<div class='col-md-6'>
 
 				<div class='card' style='width: 18rem;'>
@@ -18,32 +18,30 @@
 						<h5>{{email}}</h5>
 						<div class='row justify-content-center'>
 							<div class='col-md-6'>
-								<a
-									href='user/editar-perfil/{{id}}'
-									class='card-link btn btn-dark btn-block'
-								>Editar</a>
+								<a href='user/editar-perfil/{{id}}' class='card-link btn btn-dark btn-block'>Editar</a>
 							</div>
 							<div class='col-md-6'>
 
-                            {{!-- MIDLEWARE PARA ADMIN --}}
+								{{!-- MIDLEWARE PARA ADMIN --}}
 
 								{{! MIDDLEWARE PARA USER }}
 
-                            <form action="/user/buscar-usuarios/{{id}}/agregar" method="POST">
-                                <input type="text" name="route" value="clientes" hidden>
-                                <button class="card-link btn btn-primary btn-block" name="id" value="{{id}}">Añadir a
-                                    amigos</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-       
-    </div>
-</div>
-	<br>
+								<form action="/user/buscar-usuarios/{{id}}/agregar" method="POST">
+									<input type="text" name="route" value="clientes" hidden>
+									<button class="card-link btn btn-primary btn-block" name="id" value="{{id}}">Añadir
+										a
+										amigos</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 
-	<a href="user/editar-perfil/{{id}}">Edita tu perfil</a>
+				<a href="/eventos" class="btn btn-primary"> Volver </a>
+			</div>
+
+		</div>
+	</div>
+	<br>
 
 </div>

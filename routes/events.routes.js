@@ -4,8 +4,12 @@ const transporter = require('../config/mailing.config')
 const User = require('../models/User.model')
 
 router.get('/', (req, res) => {
-	Event.find({isAccepted: true}).then((events) =>
-		res.render('events/list-events', {events})
+	Event.find({isAccepted: true})
+		.then((events) =>{
+			//events.forEach((elm) => console.log(elm))
+			// res.send(events)
+		 res.render('events/list-events', {events})
+	}
 	)
 })
 
@@ -19,15 +23,6 @@ router.get('/:id', (req, res) => {
 		.catch((err) => console.log(err))
 })
 
-router.post('/:id/reserve', (req, res) => {
-	const {id} = req.params
-
-	Event.findById(id)
-		.then(() => {
-			res.session.currentUser._id.push(id)
-		})
-		.catch((err) => console.log(err))
-})
 
 router.get('/:id/contacto', (req, res) => {
 	// TODO: FORMULARIO DE CONTACTO CON EVENTO -------- COMPLETAR ENVIO DE CORREO

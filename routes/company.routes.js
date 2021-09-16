@@ -15,8 +15,10 @@ router.get('/crear', (req, res) => {
 router.post('/crear', fileUploader.single('event-cover-image'), (req, res) => {
 	// TODO: FORMULARIO DE CREACIÓN DE EVENTO
 
-	const {title, description, category, city, country, number, lat, lng} =
+	const {title, description, category, city, country, number, lat, lng, date} =
 		req.body
+
+	const dateFormated = date.substring(0, 10)
 
 	const direction = {
 		city: city,
@@ -36,6 +38,7 @@ router.post('/crear', fileUploader.single('event-cover-image'), (req, res) => {
 		description,
 		category,
 		location,
+		date: dateFormated,
 		image: req.file.path,
 		owner,
 	})
@@ -49,6 +52,7 @@ router.get('/perfil', (req, res) => {
 	// TODO: PERFIL DE LA EMPRESA CON SUS EVENTOS
 	const id = req.session.currentUser._id
 	Event.find({owner: id})
+		.populate('reserve')
 		// .select("title direction description category location ")
 		.then((events) => res.render('company/profile', {events}))
 		.catch((err) => console.log(err))

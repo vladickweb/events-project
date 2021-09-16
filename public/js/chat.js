@@ -1,12 +1,6 @@
 let currentMessages = 0
 window.addEventListener('load', () => {
 	// const currentMessages = checkNewMessages().then((res) => res)
-	console.log(currentMessages)
-
-	console.log(currentMessages)
-				
-
-
 	setInterval(() => {
 	// currentMessages !== checkNewMessages().then((res))
 	checkNewMessages(currentMessages)
