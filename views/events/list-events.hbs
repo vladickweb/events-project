@@ -1,11 +1,11 @@
+						{{#each events}}
+						{{date}}
 <section class='container-fluid section-8'>
 	<div class="row justify-content-around">
 		<div class="col-md-10">
 			<div class="row justify-content-around">
-						{{#each events}}
-						{{date}}
 				<div class="col-md-6 margin-top">
-						<div class="card mb-12 my-5">
+						<div class="card my-3">
 							<img src="{{image}}" class="card-img-top" alt="{{title}}">
 							<div class="card-body">
 								<h5 class="card-title">{{title}}</h5>
@@ -38,8 +38,11 @@
 							</div>
 						</div>
 					</div>
-						{{/each}}
 				</div>
 			</div>
 		</div>
 </section>
+						{{/each}}
+						<div class="row justify-content-center align-items-center">
+						<h2 class="text-center">NO HAY MÁS EVENTOS</h2>
+						</div>
