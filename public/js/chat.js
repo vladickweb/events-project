@@ -10,11 +10,11 @@ window.addEventListener('load', () => {
 	}, 500)
 })
 
+
 document
 	.getElementById('newMessageForm')
 	.addEventListener('submit', function (e) {
 		e.preventDefault()
-
 		const form = document.querySelectorAll('#newMessageForm input')
 		const message = {
 			name: form[0].value,
@@ -62,7 +62,7 @@ function getMessages() {
 		url: `/api/messages/${id}`,
 	}).then((res) => {
 		const chat = document.querySelector('.chat-body')
-
+		
 		res.data.forEach((message) => {
 			chat.innerHTML += `<h6>${message.name.name}</h6> <p class="btn btn-primary rounded-pill">${message.body}</p> <br/>`
 		})
@@ -75,9 +75,7 @@ function clearChat() {
 }
 
 function scrollDiv() {
-	console.log('funciono')
 	let div = document.getElementById('chat-body')
-	console.log(div)
 	div.scrollTop = 9999
 }
 

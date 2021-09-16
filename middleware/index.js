@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-
 // Custom middleware
 module.exports = {
     isLoggedIn: (req, res, next) => {

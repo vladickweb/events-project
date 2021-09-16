@@ -5,35 +5,13 @@ window.addEventListener("scroll", () => {
 });
 
 
-
 (function () {
 
-
-
-
-
-
-
     const applyScrollEffects = () => {
-
         // Navbar morph
         window.scrollY > 100 ?
             document.querySelector('.navigation').classList.add('sticky') :
             document.querySelector('.navigation').classList.remove('sticky')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // Parallax transition effects
         document.querySelectorAll('.parallax').forEach(elm => {
@@ -46,19 +24,10 @@ window.addEventListener("scroll", () => {
             elm.style.transform = `translate(${speedHorizontal}px, ${speedVertical}px)`
         })
 
-
-
-
-
-
-
-
-
         // Reveal effects
         document.querySelectorAll('.reveal').forEach(elm => {
             isInViewport(elm) ? elm.classList.add('visible') : elm.classList.remove('visible')
         })
-
 
         // Dynamic background generator
         document.querySelectorAll('.change-background').forEach(elm => {
@@ -71,22 +40,8 @@ window.addEventListener("scroll", () => {
         })
     }
 
-
-
-
-
+    
     document.addEventListener('scroll', applyScrollEffects)
-
-
-
-
-
-
-
-
-
-
-
 
     // Scroll navigation links
     const scrollButtons = document.querySelectorAll('.scrollto');
@@ -98,8 +53,6 @@ window.addEventListener("scroll", () => {
         }
     })
 
-
-
     // Object viewport detection
     const isInViewport = el => {
         const rect = el.getBoundingClientRect()
@@ -107,5 +60,4 @@ window.addEventListener("scroll", () => {
         const horInView = (rect.left <= window.innerWidth) && ((rect.left + rect.width) >= 0)
         return (vertInView && horInView)
     }
-
 })();
