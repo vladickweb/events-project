@@ -189,7 +189,7 @@ form .error {
 		center / 100% 100%;
 }
 .section-8 {
-	height: 100vh;
+	/* height: 100vh; */
 	width: 100%;
 	background: url('https://images.unsplash.com/photo-1592719235009-e497ad008268?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80')
 		center / 100% 100%;
@@ -399,4 +399,11 @@ transform: translateY(-3px) scale(1.05);
 
 .google-icon{
 	height: 30px;
+}
+
+.background-texture {
+	width: 100%;
+	background: url('https://images.unsplash.com/photo-1592719235009-e497ad008268?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80')
+		center / 100% 100%;
+	background-repeat: repeat;
 }
