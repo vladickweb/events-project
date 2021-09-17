@@ -227,53 +227,7 @@ form .error {
 	opacity: 1;
 }
 
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
 
-:root {
-	--facebook: #3b5999;
-	--telegram: #5e40e4;
-	--twitter: #55acee;
-	--whatsapp: #22dd1b;
-}
-
-.redes-container {
-	display: flex;
-	height: 12vh;
-	align-items: center;
-	justify-content: center;
-}
-
-.redes-container ul li{
-	display: inline-block;
-	margin: 0 5px;
-	width: 50px;
-	height: 50px;
-	text-align: center;
-}
-
-.redes-container ul li a{
-	display: block;
-	padding: 0 10px;
-	background:#333;
-	color: white;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	font-size: 18px;
-	box-shadow: 0 3px 5px 0px black;
-	transition: .4s;
-}
-
-.redes-container ul:hover a{
-filter:drop-shadow(0 0 0.25rem rgb(81, 6, 255))
-}
-
-.redes-container ul li a:hover {
-transform: translateY(-3px) scale(1.05);
-}
 
 .reveal.fadeInRight {
 	opacity: 0;
@@ -398,4 +352,52 @@ transform: translateY(-3px) scale(1.05);
 
 .google-icon{
 	height: 30px;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--facebook: #3b5999;
+	--telegram: #5e40e4;
+	--twitter: #55acee;
+	--whatsapp: #22dd1b;
+}
+
+.redes-container {
+	display: flex;
+	height: 12vh;
+	align-items: center;
+	justify-content: center;
+}
+
+.redes-container ul li{
+	display: inline-block;
+	margin: 0 5px;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+}
+
+.redes-container ul li a{
+	display: block;
+	padding: 0 10px;
+	background:#333;
+	color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 18px;
+	box-shadow: 0 3px 5px 0px black;
+	transition: .4s;
+}
+
+.redes-container ul:hover a{
+filter:drop-shadow(0 0 0.25rem rgb(81, 6, 255))
+}
+
+.redes-container ul li a:hover {
+transform: translateY(-3px) scale(1.05);
 }

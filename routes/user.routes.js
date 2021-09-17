@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../models/User.model')
 const Group = require('../models/Group.model')
 const {isLoggedIn, checkId, checkRoles} = require('../middleware')
+const CDNupload = require('../config/cloudynary.config')
 
 router.get('/', isLoggedIn, checkRoles('client'), (req, res) => {
 
@@ -17,6 +18,7 @@ router.get('/', isLoggedIn, checkRoles('client'), (req, res) => {
 router.get('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
 
 	const {id} = req.params
+	
 
 	User
 		.findById(id)
@@ -25,14 +27,17 @@ router.get('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client'), (req
 })
 
 
-router.post('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
+router.post('/editar-perfil/:id', CDNupload.single('image') ,isLoggedIn, checkId, checkRoles('client'), (req, res) => {
 
 	const {id} = req.params
-	const {name} = req.body
+	const {name, email} = req.body
+	const image = req.file.path
+	
+	console.log(req.session.user)
 
 	User
-		.findByIdAndUpdate(id, {name}, {new: true})
-		.then(res.redirect('/'))
+		.findByIdAndUpdate(id, {name, email, image}, {new: true})
+		.then(()=>res.redirect('/'))
 		.catch((err) => console.log(err))
 })
 

@@ -1,10 +1,10 @@
 <div class="container">
-	
+
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 
 			{{!-- <form action="/admin/usuarios/{{id}}/editar" method="POST"> --}}
-				<form action="/user/editar-perfil/{{id}}" method="POST">
+				<form action="/user/editar-perfil/{{id}}" method="POST" enctype="multipart/form-data">
 
 
 					{{!-- <img src="" class="card-img-top" alt=""> --}}
@@ -14,17 +14,22 @@
 						<input type="text" class="form-control" id="name" value="{{name}}" name="name">
 					</div>
 
-					
+
 
 					<div class="form-group">
 						<label for="email">Cambiar correo electrónico</label>
 						<input type="email" class="form-control" id="email" value="{{email}}" name="email">
-					</div> 
+					</div>
+
+					<div class="form-group col-md-12">
+						<label for="image" class="form-label">Cambiar Imagen de perfil</label>
+						<input class="form-control" type="file" name='image' value="{{image}}" id='image' />
+					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
-					
+
 				</form>
-				
+
 		</div>
-		
+
 	</div>
 </div>

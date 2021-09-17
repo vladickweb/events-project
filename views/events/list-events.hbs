@@ -2,44 +2,46 @@
 	<div class="row justify-content-around">
 		<div class="col-md-10">
 			<div class="row justify-content-around">
-						{{#each events}}
-						{{date}}
+				{{#each events}}
+				{{date}}
 				<div class="col-md-6 margin-top">
-						<div class="card mb-12 my-5">
-							<img src="{{image}}" class="card-img-top" alt="{{title}}">
-							<div class="card-body">
-								<h5 class="card-title">{{title}}</h5>
-								<p class="card-text">Fecha del evento: {{date}}</p>
-								<p class="card-text">{{description}}.</p>
-								<p class="card-text"><small class="text-muted">{{direction.city}}</small></p>
+					<div class="card mb-12 my-5">
+						<img src="{{image}}" class="card-img-top" alt="{{title}}">
+						<div class="card-body">
+							<h5 class="card-title">{{title}}</h5>
+							<p class="card-text">Fecha del evento: {{date}}</p>
+							<p class="card-text">{{description}}.</p>
+							<p class="card-text"><small class="text-muted">{{direction.city}}</small></p>
 
-								<form action="/eventos/reserva/{{id}}" method="POST">
-									<button type="submit" class="btn btn-danger">Reservar</button>
-								</form>
+							<form action="/eventos/reserva/{{id}}" method="POST">
+								<button type="submit" class="btn btn-danger">Reservar</button>
+							</form>
 
-								<a href='/eventos/{{id}}' type="submit" class="btn btn-dark">Ver detalles</a>
-							</div>
+							<a href='/eventos/{{id}}' type="submit" class="btn btn-dark">Ver detalles</a>
+						</div>
 
-							<div class='redes-container'>
+						<div class='redes-container'>
 
-								<div class='share-btn'>
-									<h5>Compártelo!</h5>
-									<ul>
-										<li><a href="" class='facebook' data-id="fb"> <i
-													class='fab fa-facebook-f'></i></a></li>
-										<li><a href="" class='twitter' data-id="tw"> <i class='fab fa-twitter'></i></a>
-										</li>
-										<li><a href="" class='facebook' data-id="tg"> <i
-													class='fab fa-telegram'></i></a></li>
-										<li><a href="" class='facebook' data-id="wa"> <i
-													class='fab fa-whatsapp'></i></a> </li>
-									</ul>
-								</div>
-							</div>
+							<div class='share-btn'></div>
+							{{!-- <h5>Compártelo!</h5> --}}
+							<ul>
+								<li><a class="btn-facebook" data-id="fb"> <i class='fab fa-facebook-f'></i></a></li>
+								<li><a href="" class='twitter' data-id="tw"> <i class='fab fa-twitter'></i></a>
+								</li>
+								<li><a href="" class='facebook' data-id="tg"> <i class='fab fa-telegram'></i></a></li>
+								<li><a href="" class='facebook' data-id="wa"> <i class='fab fa-whatsapp'></i></a> </li>
+
+
+							</ul>
 						</div>
 					</div>
-						{{/each}}
 				</div>
 			</div>
+
+			{{/each}}
+
 		</div>
+	</div>
+	</div>
+	<script src="<path>/dist/share-buttons.js"></script>
 </section>

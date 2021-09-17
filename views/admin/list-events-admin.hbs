@@ -1,6 +1,6 @@
-<div class='container'>
+<div class='container '>
 
-	<h1> Eventos :D </h1>
+	
 
 	{{#each events}}
 		<div class='card mb-5'>
@@ -11,14 +11,14 @@
 				<p class='card-text'><small
 						class='text-muted'
 					>{{direction.city}}</small></p>
-				 <form  action="/admin/usuarios/empresas/{{id}}/eventos/aceptar" method='POST'>
+				 <form  action="/admin/{{id}}/eventos/aceptar" method='POST'>
 
-				<button type="submit" class="btn btn-dark"> Aceptar </button>
+				<button type="submit" class="btn btn-dark mt-4"> Aceptar </button>
 				
 			</form> 
 
-            <form action="/admin/usuarios/empresas/{{id}}/eventos/borrar" method="POST">
-                <button type="submit" class="btn btn-dark"> Rechazar </button>
+            <form action="/admin/{{id}}/eventos/borrar" method="POST">
+                <button type="submit" class="btn btn-dark mt-4"> Rechazar </button>
             </form>
 			</div>
 		</div>

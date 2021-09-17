@@ -76,7 +76,7 @@ router.post('/usuarios/:id/borrar', isLoggedIn, checkId, checkRoles('admin'), (r
 })
 
 
-router.get('/usuarios/empresas/eventos', isLoggedIn, checkRoles('admin'), (req, res) => {	
+router.get('/eventos', isLoggedIn, checkRoles('admin'), (req, res) => {	
 	Event
 		.find({isAccepted: false})
 		.then((events) => res.render('admin/list-events-admin', {events}))
@@ -84,24 +84,24 @@ router.get('/usuarios/empresas/eventos', isLoggedIn, checkRoles('admin'), (req, 
 })
 
 
-router.post('/usuarios/empresas/:id/eventos/borrar', isLoggedIn, checkId, checkRoles('admin'), (req,res) => {
+router.post('/:id/eventos/borrar', isLoggedIn, checkId, checkRoles('admin'), (req,res) => {
 
 	 const {id} = req.params
 
 	 Event
 		.findByIdAndDelete(id)
-		.then(() => res.redirect(`/admin/usuarios/empresas/eventos`))
+		.then(() => res.redirect(`/`))
 		.catch((err) => console.log(err))
 })
 
 
-router.post('/usuarios/empresas/:id/eventos/aceptar', isLoggedIn, checkId, checkRoles('admin'), (req, res) => {
+router.post('/:id/eventos/aceptar', isLoggedIn, checkId, checkRoles('admin'), (req, res) => {
 
 	const {id} = req.params
 
 	Event
 		.findByIdAndUpdate(id, {isAccepted: true})
-		.then(() => res.redirect(`/admin/usuarios/empresas/eventos`))
+		.then(() => res.redirect(`/`))
 		.catch((err) => console.log(err))
 })
 
