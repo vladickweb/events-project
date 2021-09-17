@@ -8,13 +8,13 @@
 		{{#each clients}}
 		<div class='col-md-4 text-center mb-5'>
 
-			<div class='card transparent p-5 text-white'>
+			<div class="card transparent p-5 text-white  reveal fadeInLeft" data-delay="300ms">
 				<img class='card-img-top' src='{{image}}' alt='{{name}}' />
 				<div class='card-body'>
 					<h5 class='card-title'>{{name}}</h5>
 					<hr />
 				</div>
-				<form action="/user/buscar-usuarios/{{id}}/agregar" method="POST">
+				<form action="/user/buscar-usuarios/{{id}}/agregar" method="POST" class=" reveal fadeInUp" data-delay="600ms">
 					<input type="text" name="route" value="clientes" hidden>
 					<button class="card-link btn btn-dark border-white btn-block" name="id" value="{{id}}">Añadir a
 						amigos</button>

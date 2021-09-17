@@ -112,7 +112,9 @@ form .error {
 .chat {
 	height: 600px;
 	width: 100%;
-	overflow-y: scroll;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+
 }
 
 .navbar {
@@ -126,6 +128,16 @@ form .error {
 	align-items: center;
 	background: var(--bg);
 	transition: all 250ms ease-out;
+}
+
+.height{
+	
+	/* background-color: #22dd1b; */
+	/* background-image: url("/images/google_logo.png") center 100% 100%; */
+	height: 50px;
+	width: 100%;
+	background: url('/images/google_logo.png')
+		center / 100% 100%;
 }
 
 .logo {
@@ -143,6 +155,10 @@ form .error {
 .nav-item {
 	margin: 0 1em;
 	font-family: 'Poppins', sans-serif;
+}
+
+.chat-body {
+	scroll-behavior: smooth;
 }
 
 .nav-link {
@@ -257,6 +273,15 @@ form .error {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+
+.a-google{
+	display: flex;
+	justify-content: center;
+}
+
+.ico-google{
+	width: 15rem;
 }
 
 :root {
