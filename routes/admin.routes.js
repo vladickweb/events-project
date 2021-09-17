@@ -54,7 +54,7 @@ router.post('/usuarios/:id/borrar', isLoggedIn, checkId, checkRoles('admin'), (r
 
 	User
 		.findByIdAndDelete(id)
-		.then(res.redirect(`/admin/usuarios/${route}`))
+		.then(() => res.redirect(`/admin/usuarios/${route}`))
 		.catch((err) => console.log(err))
 })
 

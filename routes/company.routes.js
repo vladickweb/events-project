@@ -75,7 +75,6 @@ router.post('/perfil/editar/:id', isLoggedIn, checkId, checkRoles('company'), (r
 	const id = req.session.currentUser._id
 	const {name} = req.body
 	
-
 	User
 		.findByIdAndUpdate(id, {name}, {new: true})
 		.then(() => res.redirect('/'))

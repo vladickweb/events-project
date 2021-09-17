@@ -19,7 +19,6 @@ router.get('/editar-perfil/:id', isLoggedIn, checkId, (req, res) => {
 
 	const {id} = req.params
 	
-
 	User
 		.findById(id)
 		.then((user) => res.render('user/edit-user', user))
@@ -49,9 +48,7 @@ router.get('/buscar-usuarios', isLoggedIn, (req, res) => {
 	User
 		.find({"rol": "client"})
 		.populate('friends')
-		.then((clients) => {
-			res.render('admin/list-clients', {clients})
-		})
+		.then((clients) => {res.render('admin/list-clients', {clients})})
 		.catch((err) => console.log(err))
 })
 
@@ -89,7 +86,6 @@ router.get('/amigos', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 	User
 		.findById(id)
 		.populate('friends')
-		// .then(user => res.send(user))
 		.then((user) => res.render('user/friends', user))
 		.catch((err) => console.log(err))
 })

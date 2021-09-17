@@ -1,25 +1,7 @@
 let currentMessages = 0
 window.addEventListener('load', () => {
-	// const currentMessages = checkNewMessages().then((res) => res)
 	setInterval(() => {
-		// currentMessages !== checkNewMessages().then((res))
 		checkNewMessages(currentMessages)
-		// function pageScroll() {
-		// 	// If condition to set repeat
-		// 	if (count < 2) {
-		// 		var objDiv = document.getElementById('chat-body')
-		// 		objDiv.scrollTop = objDiv.scrollTop + 1
-		// 		if (objDiv.scrollTop == objDiv.scrollHeight - 61) {
-		// 			setTimeout(function () {
-		// 				objDiv.scrollTop = 0
-		// 				count++
-		// 			}, 1200)
-		// 		}
-		// 		//set scrolling time start
-		// 		my_time = setTimeout('pageScroll()', 10)
-		// 		//set scrolling time end
-		// 	}
-		// }
 		scrollDiv()
 	}, 1000)
 })
