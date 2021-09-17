@@ -55,14 +55,12 @@ router.post('/buscar-usuarios/:id/agregar', isLoggedIn, checkId, checkRoles('cli
 
 	const user = req.session.currentUser
 	const {id} = req.body
-
+	console.log(user, id)
 	User
 		.findByIdAndUpdate(user._id, {$push: {friends: id}}, {new: true})
-		.populate('friends')
-		.find(user._id)
 		.then((user) => {
 			req.session.currentUser = user
-			res.redirect('/user/buscar-usuarios')
+			res.redirect('/user/amigos')
 		})
 		.catch((err) => console.log(err))
 })
@@ -86,6 +84,7 @@ router.get('/amigos', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 	User
 		.findById(id)
 		.populate('friends')
+		// .then(user => res.send(user))
 		.then((user) => res.render('user/friends', user))
 		.catch((err) => console.log(err))
 })
