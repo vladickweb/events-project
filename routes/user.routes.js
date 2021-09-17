@@ -4,7 +4,7 @@ const Group = require('../models/Group.model')
 const {isLoggedIn, checkId, checkRoles} = require('../middleware')
 const CDNupload = require('../config/cloudynary.config')
 
-router.get('/', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
+router.get('/', isLoggedIn, checkRoles('client', 'company','admin'), (req, res) => {
 
 	const id = req.session.currentUser._id
 
@@ -15,7 +15,7 @@ router.get('/', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 })
 
 
-router.get('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client', 'admin'), (req, res) => {
+router.get('/editar-perfil/:id', isLoggedIn, checkId, (req, res) => {
 
 	const {id} = req.params
 	
@@ -27,7 +27,7 @@ router.get('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client', 'admi
 })
 
 
-router.post('/editar-perfil/:id', CDNupload.single('image') ,isLoggedIn, checkId, checkRoles('client'), (req, res) => {
+router.post('/editar-perfil/:id', CDNupload.single('image') ,isLoggedIn, checkId, checkRoles('client', 'admin'), (req, res) => {
 
 	const {id} = req.params
 	const {name, email} = req.body
@@ -37,7 +37,7 @@ router.post('/editar-perfil/:id', CDNupload.single('image') ,isLoggedIn, checkId
 
 	User
 		.findByIdAndUpdate(id, {name, email, image}, {new: true})
-		.then(()=>res.redirect('/'))
+		.then(()=>res.redirect('/user'))
 		.catch((err) => console.log(err))
 })
 
