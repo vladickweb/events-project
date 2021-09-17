@@ -3,7 +3,7 @@
 		<div class="col-md-12 h1 text-center">
 			Crear evento
 		</div>
-		<form class="row g-3" action='/empresa/crear' method='post' enctype="multipart/form-data">
+		<form class="row g-3" action='/empresa/crear' method='POST' enctype="multipart/form-data">
 			<div class="col-md-12 mb-3 reveal fadeInLeft" data-delay="600ms">
 				<label for="input" class="form-label">Título</label>
 				<input type="text" class="form-control" name="title">
@@ -54,10 +54,10 @@
 				<input class="form-control" type="file" name='event-cover-image' />
 			</div>
 
-		</form>
 			<div class="col-md-4 my-3 text-center reveal fadeInLeft" data-delay="900ms">
 				<button type="submit" class="btn btn-dark">Crear Evento</button>
 			</div>
+		</form>
 
 			<div class="col-4 text-center align-items-center reveal fadeInLeft" data-delay="900ms">
 
