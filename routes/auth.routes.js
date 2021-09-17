@@ -32,7 +32,7 @@ router.get('/redirect', (req, res) => {
 				res.redirect('/sign-up/rol')
 				break
 			case 'admin':
-				res.redirect('/admin/usuarios/empresas/eventos')
+				res.redirect('/admin/eventos')
 				break
 		}
 	})
