@@ -1,48 +1,71 @@
-<div class='container mt-5'>
+{{!-- <div class='container margin-top'>
 	<div class='row justify-content-center'>
 		{{#each companies}}
-			<div class='col-md-6'>
+		<div class='col-md-6'>
 
-				<div class='card' style='width: 18rem;'>
-					<img class='card-img-top' src='{{image}}' alt='{{name}}' />
-					<div class='card-body'>
-						<h5 class='card-title'>{{name}}</h5>
-						<hr />
-					</div>
+			<div class='card' style='width: 18rem;'>
+				<img class='card-img-top' src='{{image}}' alt='{{name}}' />
+				<div class='card-body'>
+					<h5 class='card-title'>{{name}}</h5>
+					<hr />
+				</div>
 
-					<div class='card-body'>
-						<h5>{{email}}</h5>
-						<div class='row justify-content-center'>
-							<div class='col-md-6'>
-								<a
-									href='/admin/usuarios/{{id}}/editar'
-									class='card-link btn btn-dark btn-block'
-								>Editar</a>
-							</div>
-							<div class='col-md-6'>
-								<form
-									action='/admin/usuarios/{{id}}/borrar'
-									method='POST'
-								>
-									<input
-										type='text'
-										name='route'
-										value='empresas'
-										hidden
-									/>
-									<button
-										class='card-link btn btn-danger btn-block'
-										name='id'
-										value='{{id}}'
-									>Borrar</button>
-								</form>
-							</div>
-							
-							
+				<div class='card-body'>
+					<h5>{{email}}</h5>
+					<div class='row justify-content-center'>
+						<div class='col-md-6'>
+							<a href='/admin/usuarios/{{id}}/editar' class='card-link btn btn-dark btn-block'>Editar</a>
 						</div>
+						<div class='col-md-6'>
+							<form action='/admin/usuarios/{{id}}/borrar' method='POST'>
+								<input type='text' name='route' value='empresas' hidden />
+								<button class='card-link btn btn-danger btn-block' name='id'
+									value='{{id}}'>Borrar</button>
+							</form>
+						</div>
+
+
 					</div>
 				</div>
 			</div>
+		</div>
 		{{/each}}
 	</div>
+</div> --}}
+
+
+<div class='container margin-top'>
+	<div class='row justify-content-center'>
+		{{#each companies}}
+		<div class='col-md-4 text-center mb-5'>
+
+			<div class='card transparent p-5 text-white'>
+				<img class='card-img-top' src='{{image}}' alt='{{name}}' />
+				<div class='card-body'>
+					<h5 class='card-title'>{{name}}</h5>
+					<hr />
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<form action='/admin/usuarios/{{id}}/borrar' method='POST'>
+							<input type='text' name='route' value='empresas' hidden />
+							<button class='card-link btn btn-danger btn-block' name='id' value='{{id}}'>Borrar</button>
+						</form>
+					</div>
+					<div class='col-md-6'>
+						<a href='/admin/usuarios/{{id}}/editar' class='card-link btn btn-dark btn-block'>Editar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{/each}}
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-md-2">
+			<a class="btn btn-dark btn-block mt-5" href="/admin/usuarios">Volver</a>
+		</div>
+	</div>
 </div>
+
+
+<script src="/js/background-texture.js"></script>

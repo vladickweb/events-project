@@ -3,10 +3,6 @@ const User = require('../models/User.model')
 const Event = require('../models/Event.model')
 const { checkId, isLoggedIn, checkRoles } = require("../middleware")
 
-router.get('/', isLoggedIn, (req, res) => {
-	res.send('mostrar eventos')
-})
-
 
 router.get('/usuarios', isLoggedIn, checkRoles('admin'), (req, res) => {
 	res.render('admin/users')
@@ -25,19 +21,6 @@ router.get('/usuarios/clientes', isLoggedIn, checkRoles('admin'), (req, res) => 
 	User
 		.find({rol: 'client'})
 		.then((clients) => res.render('admin/list-clients-admin', {clients}))
-		.catch((err) => console.log(err))
-})
-
-
-router.get('/usuarios/:id', isLoggedIn, checkId, checkRoles('admin'), (req, res) => {
-
-	const {id} = req.params
-
-	User
-		.findById(id)
-		.then((user) => {
-			res.render('admin/user-info', user)
-		})
 		.catch((err) => console.log(err))
 })
 
@@ -103,6 +86,10 @@ router.post('/usuarios/empresas/:id/eventos/aceptar', isLoggedIn, checkId, check
 		.findByIdAndUpdate(id, {isAccepted: true})
 		.then(() => res.redirect(`/admin/usuarios/empresas/eventos`))
 		.catch((err) => console.log(err))
+})
+
+router.get('/panel', (req, res) => {
+	res.render('admin/panel')
 })
 
 module.exports = router

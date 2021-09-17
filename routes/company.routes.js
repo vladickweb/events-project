@@ -41,7 +41,7 @@ router.post('/crear', isLoggedIn, fileUploader.single('event-cover-image'), chec
 			owner,
 	})
 		.then(() => {
-			res.redirect('/empresa/crear')
+			res.redirect('/eventos')
 		})
 		.catch((err) => console.log(err))
 })

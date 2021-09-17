@@ -4,31 +4,36 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>{{siteTitle}}</title>
+	<title class="titled">{{siteTitle}}</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 	<link rel="stylesheet" href="/stylesheets/style.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
 </head>
 
 <body>
-    <nav class="navbar navigation">
-      <a href="/" class="logo">{{siteTitle}}</a>
-      <ul class="nav-list">
-        <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-		{{#if isLoggedIn}}
-        <li class="nav-item"><a href="/eventos" class="nav-link">Eventos</a></li>
-        <li class="nav-item"><a href="/user/buscar-usuarios" class="nav-link">Amigos</a></li>
-        <li class="nav-item"><a href="/logout" class="nav-link">Cerrar Sesión</a></li>
-		<li class="nav-item"><a href="/user" class="nav-link">Mi perfil</a></li>
-		{{else}}
-        <li class="nav-item"><a href="/login" class="nav-link">Iniciar Sesión</a></li>
-        <li class="nav-item"><a href="/sign-up" class="nav-link">Crea una cuenta</a></li>		
-		{{/if}}
-      </ul>
-    </nav>
-	<script src="./../js/script.js"></script>
+	<nav class="navbar navigation">
+		<a href="/" class="logo">{{siteTitle}}</a>
+		<ul class="nav-list">
+			<li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+			{{#if isLoggedIn}}
+			<li class="nav-item"><a href="/eventos" class="nav-link">Eventos</a></li>
+			<li class="nav-item"><a href="/user/buscar-usuarios" class="nav-link">Amigos</a></li>
+			<li class="nav-item"><a href="/logout" class="nav-link">Cerrar Sesión</a></li>
+			<li class="nav-item"><a href="/user" class="nav-link">Mi perfil</a></li>
+			{{else}}
+			<li class="nav-item"><a href="/login" class="nav-link">Iniciar Sesión</a></li>
+			<li class="nav-item"><a href="/sign-up" class="nav-link">Crea una cuenta</a></li>
+			{{/if}}
+		</ul>
+	</nav>
+	<script src="/js/script.js"></script>
 	{{{body}}}
 </body>
 

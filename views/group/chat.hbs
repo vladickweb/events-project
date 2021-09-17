@@ -1,28 +1,39 @@
-<div class="container">
-	<h1>Chat</h1>
+<div class="container text-white margin-top">
 </div>
 <hr>
-<div class="container">
+<div class="container transparent p-5 text-white">
+	<h1 class="mb-5">Chat de grupo</h1>
 	<div class="row justify-content-center">
 		<div class="col-md-8">
-			<div class="container border chat" id="chat-body">
+			<div class="container border chat bg-dark" id="chat-body">
 				<div class="chat-body">
 
 				</div>
 			</div>
 
-			<form id="newMessageForm">
-				<label>
-					<input name="name" cols="30" rows="10" value="{{user._id}}" hidden></input>
-					<input class="input-chat" name="body" rows="5" cols="100"></input>
-					<input name="id" cols="30" rows="10" value="{{id}}" hidden></input>
-				</label>
-				<input class="btn btn-dark " type="submit" name="body">
-			</form>
 
 		</div>
 	</div>
+	<div class="row justify-content-center">
+		<form id="newMessageForm">
+			<div class="container mt-3">
+				<div class="row justify-content-around">
+					<div class="col-md-8">
+						<label>
+							<input name="name" value="{{user._id}}" hidden></input>
+							<input class="input-chat  py-1 mr-5" name="body"></input>
+							<input name="id" value="{{id}}" hidden></input>
+						</label>
+					</div>
+					<div class="col-md-4">
+						<input class="btn btn-dark btn-block ml-5" type="submit" name="body">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
 
+<script src="/js/background-texture.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="../../js/chat.js"></script>

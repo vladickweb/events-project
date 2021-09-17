@@ -17,7 +17,7 @@ require('./db')
 const projectName = 'Eventator_'
 
 app.locals.siteTitle = projectName
-app.locals.isLoggedIn = ""
+app.locals.isLoggedIn = "false"
 
 require('./routes')(app)
 

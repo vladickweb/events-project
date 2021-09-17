@@ -3,7 +3,7 @@ const User = require('../models/User.model')
 const Group = require('../models/Group.model')
 const {isLoggedIn, checkId, checkRoles} = require('../middleware')
 
-router.get('/', isLoggedIn, checkRoles('client'), (req, res) => {
+router.get('/', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 
 	const id = req.session.currentUser._id
 
@@ -14,7 +14,7 @@ router.get('/', isLoggedIn, checkRoles('client'), (req, res) => {
 })
 
 
-router.get('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
+router.get('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client', 'admin'), (req, res) => {
 
 	const {id} = req.params
 
@@ -25,7 +25,7 @@ router.get('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client'), (req
 })
 
 
-router.post('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
+router.post('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client', 'admin'), (req, res) => {
 
 	const {id} = req.params
 	const {name} = req.body
@@ -37,21 +37,29 @@ router.post('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client'), (re
 })
 
 
-router.get('/buscar-usuarios', isLoggedIn, checkRoles('client'), (req, res) => {
+router.get('/buscar-usuarios', isLoggedIn, (req, res) => {
+
+	const user = req.session.currentUser._id
+
 	User
-		.find({rol: 'client'})
-		.then((clients) => res.render('admin/list-clients', {clients}))
+		.find({"rol": "client"})
+		.populate('friends')
+		.then((clients) => {
+			res.render('admin/list-clients', {clients})
+		})
 		.catch((err) => console.log(err))
 })
 
 
-router.post('/buscar-usuarios/:id/agregar', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
+router.post('/buscar-usuarios/:id/agregar', isLoggedIn, checkId, checkRoles('client', 'admin'), (req, res) => {
 
 	const user = req.session.currentUser
 	const {id} = req.body
 
 	User
 		.findByIdAndUpdate(user._id, {$push: {friends: id}}, {new: true})
+		.populate('friends')
+		.find(user._id)
 		.then((user) => {
 			req.session.currentUser = user
 			res.redirect('/user/buscar-usuarios')
@@ -60,7 +68,7 @@ router.post('/buscar-usuarios/:id/agregar', isLoggedIn, checkId, checkRoles('cli
 })
 
 
-router.get('/grupos', isLoggedIn, checkRoles('client'), (req, res) => {
+router.get('/grupos', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 
 	const id = req.session.currentUser._id
 
@@ -71,7 +79,7 @@ router.get('/grupos', isLoggedIn, checkRoles('client'), (req, res) => {
 })
 
 
-router.get('/amigos', isLoggedIn, checkRoles('client'), (req, res) => {
+router.get('/amigos', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 
 	const id = req.session.currentUser._id
 
@@ -83,7 +91,7 @@ router.get('/amigos', isLoggedIn, checkRoles('client'), (req, res) => {
 })
 
 
-router.get('/grupos/crear', isLoggedIn, checkRoles('client'), (req, res) => {
+router.get('/grupos/crear', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 
 	const id = req.session.currentUser._id
 
@@ -95,7 +103,7 @@ router.get('/grupos/crear', isLoggedIn, checkRoles('client'), (req, res) => {
 })
 
 
-router.post('/grupos/crear', isLoggedIn, checkRoles('client'), (req, res) => {
+router.post('/grupos/crear', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 
 	const {title, users} = req.body
 	const owner = req.session.currentUser._id
@@ -107,7 +115,7 @@ router.post('/grupos/crear', isLoggedIn, checkRoles('client'), (req, res) => {
 })
 
 
-router.get('/grupos/:id', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
+router.get('/grupos/:id', isLoggedIn, checkId, checkRoles('client', 'admin'), (req, res) => {
 
 	const {id} = req.params
 	const user = req.session.currentUser

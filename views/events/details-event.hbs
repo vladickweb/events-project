@@ -1,8 +1,9 @@
 <div class='container text-white margin-top'>
 
 
+	<h2>Información:</h2>
 
-	<div class="card transparent mb-5">
+	<div class="card transparent mb-5 reveal fadeInLeft" data-delay="300ms">
 		<h5 class="card-header">Evento: {{event.title}} </h5>
 		<div class="card-body">
 		<small>Fecha del evento: {{event.date}}</small>
@@ -17,9 +18,9 @@
 	</div>
 	
 
-	<h1>Ubicación:</h1>
+	<h2>Ubicación:</h2>
 	<input type='text' value='{{event.id}}' id='id' hidden />
-	<figure id='map'></figure>
+	<figure id='map' class=" reveal fadeInLeft" data-delay="600ms"></figure>
 
 	<script src='/js/directions.js'></script>
 	<script src='https://unpkg.com/axios/dist/axios.min.js'></script>

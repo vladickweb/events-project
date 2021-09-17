@@ -1,16 +1,16 @@
-<div class="container">
+<div class="container margin-top">
 	
 	<div class="row justify-content-center">
-		<div class="col-md-6">
+		<div class="col-md-4 transparent p-5 text-white">
 
 			{{!-- <form action="/admin/usuarios/{{id}}/editar" method="POST"> --}}
 				<form action="/user/editar-perfil/{{id}}" method="POST">
 
 
-					{{!-- <img src="" class="card-img-top" alt=""> --}}
+					 <img src="{{image}}" class="card-img-top" alt="{{name}}"> 
 
 					<div class="form-group">
-						<label for="name">Cambiar nombre</label>
+						<label for="name">Nombre</label>
 						<input type="text" class="form-control" id="name" value="{{name}}" name="name">
 					</div>
 
@@ -20,11 +20,19 @@
 						<label for="email">Cambiar correo electrónico</label>
 						<input type="email" class="form-control" id="email" value="{{email}}" name="email">
 					</div> 
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" class="btn btn-dark btn-block">Submit</button>
 					
 				</form>
 				
 		</div>
 		
+		
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-md-2">
+			<a class="btn btn-dark btn-block mt-5" href="/admin/usuarios">Volver</a>
+		</div>
 	</div>
 </div>
+
+<script src="/js/background-texture.js"></script>
