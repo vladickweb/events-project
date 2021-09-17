@@ -1,57 +1,29 @@
-<div class='container mt-5'>
+<div class='container margin-top'>
+<div class="row justify-content-center">
+	<div class="col-md-6">
+		<a class="btn btn-dark btn-block mb-4"href="/user/amigos">Tus amigos, pincha aquí!</a>
+	</div>
+</div>
 	<div class='row justify-content-center'>
 		{{#each clients}}
-			<div class='col-md-6'>
+		<div class='col-md-4 text-center mb-5'>
 
-				<div class='card' style='width: 18rem;'>
-					<img class='card-img-top' src='{{image}}' alt='{{name}}' />
-					<div class='card-body'>
-						<h5 class='card-title'>{{name}}</h5>
-						<hr />
-					</div>
-
-					<div class='card-body'>
-						<h5>{{email}}</h5>
-						<div class='row justify-content-center'>
-							<div class='col-md-6'>
-								<a
-									href='/admin/usuarios/{{id}}/editar'
-									class='card-link btn btn-dark btn-block'
-								>Editar</a>
-							</div>
-							<div class='col-md-6'>
-
-                            {{!-- MIDLEWARE PARA ADMIN --}}
-							
-								<form
-									action='/admin/usuarios/{{id}}/borrar'
-									method='POST'
-								>
-									<input
-										type='text'
-										name='route'
-										value='clientes'
-										hidden
-									/>
-									<button
-										class='card-link btn btn-danger btn-block'
-										name='id'
-										value='{{id}}'
-									>Borrar</button>
-								</form>
-
-								{{! MIDDLEWARE PARA USER }}
-
-                            <form action="/user/buscar-usuarios/{{id}}/agregar" method="POST">
-                                <input type="text" name="route" value="clientes" hidden>
-                                <button class="card-link btn btn-primary btn-block" name="id" value="{{id}}">Añadir a
-                                    amigos</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/each}}
-    </div>
+			<div class="card transparent p-5 text-white  reveal fadeInLeft" data-delay="300ms">
+				<img class='card-img-top' src='{{image}}' alt='{{name}}' />
+				<div class='card-body'>
+					<h5 class='card-title'>{{name}}</h5>
+					<hr />
+				</div>
+				<form action="/user/buscar-usuarios/{{id}}/agregar" method="POST" class=" reveal fadeInUp" data-delay="600ms">
+					<input type="text" name="route" value="clientes" hidden>
+					<button class="card-link btn btn-dark border-white btn-block" name="id" value="{{id}}">Añadir a
+						amigos</button>
+				</form>
+			</div>
+		</div>
+		{{/each}}
+	</div>
 </div>
+
+
+<script src="../../js/background-texture.js"></script>

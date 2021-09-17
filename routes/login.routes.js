@@ -37,7 +37,7 @@ router.post('/login', (req, res) => {
 			}
 			req.app.locals.isLoggedIn = true
 			req.session.currentUser = user
-			res.redirect('/eventos')
+			res.redirect('/auth/redirect')
 		})
 		.catch((err) => console.log(err))
 })
@@ -89,7 +89,7 @@ router.post('/sign-up', (req, res) => {
 					req.session.currentUser = user
 					req.app.locals.isLoggedIn = true
 
-					res.redirect('/sign-up/rol')
+					res.redirect('/auth/redirect')
 				})
 			})
 				.catch((err) => console.log(err))

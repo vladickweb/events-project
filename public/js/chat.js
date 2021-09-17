@@ -2,14 +2,27 @@ let currentMessages = 0
 window.addEventListener('load', () => {
 	// const currentMessages = checkNewMessages().then((res) => res)
 	setInterval(() => {
-	// currentMessages !== checkNewMessages().then((res))
-	checkNewMessages(currentMessages)
-	// clearChat()
-	// getMessages()
-	// scrollDiv()
-	}, 500)
+		// currentMessages !== checkNewMessages().then((res))
+		checkNewMessages(currentMessages)
+		// function pageScroll() {
+		// 	// If condition to set repeat
+		// 	if (count < 2) {
+		// 		var objDiv = document.getElementById('chat-body')
+		// 		objDiv.scrollTop = objDiv.scrollTop + 1
+		// 		if (objDiv.scrollTop == objDiv.scrollHeight - 61) {
+		// 			setTimeout(function () {
+		// 				objDiv.scrollTop = 0
+		// 				count++
+		// 			}, 1200)
+		// 		}
+		// 		//set scrolling time start
+		// 		my_time = setTimeout('pageScroll()', 10)
+		// 		//set scrolling time end
+		// 	}
+		// }
+		scrollDiv()
+	}, 1000)
 })
-
 
 document
 	.getElementById('newMessageForm')
@@ -62,7 +75,7 @@ function getMessages() {
 		url: `/api/messages/${id}`,
 	}).then((res) => {
 		const chat = document.querySelector('.chat-body')
-		
+
 		res.data.forEach((message) => {
 			chat.innerHTML += `<h6>${message.name.name}</h6> <p class="btn btn-primary rounded-pill">${message.body}</p> <br/>`
 		})

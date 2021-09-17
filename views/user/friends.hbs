@@ -1,13 +1,30 @@
-<div class="container">
+<div class="container margin-top">
 	<div class="row justify-content-center">
-		<div class="col-md-8">
-			<ul class="list-group">
-				{{#each this.friends}}
-				<li class="list-group-item">
-					{{this.name}}
-				</li>
-				{{/each}}
-			</ul>
+		<div class="col-md-12">
+			<div class="row justify-content-around mb-5 reveal fadeInUp" data-delay="600ms">
+				<div class="col-md-6">
+					<a class="btn btn-dark btn-block" href="/user/grupos">Accede a tus grupos</a>
+				</div>
+				<div class="col-md-6">
+					<a class="btn btn-dark btn-block" href="/user/grupos/crear">Crear grupos</a>
+				</div>
+			</div>
+			<div class="row transparent text-white justify-content-center p-5">
+				<div class="col-md-8">
+				<h1 class="mb-4">Tus amigos:</h1>
+				</div>
+				<div class="col-md-8">
+					<ul class="list-group">
+						{{#each this.friends}}
+						<li class="list-group-item bg-dark mb-3 text-white">
+							{{this.name}}
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
+
+<script src="/js/background-texture.js"></script>

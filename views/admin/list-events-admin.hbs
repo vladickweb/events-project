@@ -1,27 +1,48 @@
-<div class='container '>
 
-	
+<div class="container margin-top">
+<a href="/admin/panel" class="btn btn-dark btn-block p-4">
+	Ir a panel de Admin
+</a>
+</div>
 
-	{{#each events}}
-		<div class='card mb-5'>
-			<img src='{{image}}' class='card-img-top' alt='{{title}}' />
-			<div class='card-body'>
-				<h5 class='card-title'>{{title}}</h5>
-				<p class='card-text'>{{description}}.</p>
-				<p class='card-text'><small
-						class='text-muted'
-					>{{direction.city}}</small></p>
-				 <form  action="/admin/{{id}}/eventos/aceptar" method='POST'>
+{{#each events}}
+<section class='container-fluid text-white'>
+	<div class="row justify-content-around">
+		<div class="col-md-10">
+			<div class="row justify-content-around">
+				<div class="col-md-6 margin-top">
+					<div class="card my-3 p-3 transparent reveal fadeInLeft" data-delay="300ms">
+						<img src="{{image}}" class="card-img-top" alt="{{title}}">
+						<div class="card-body">
+							<h5 class="card-title reveal fadeInUp" data-delay="300ms">{{title}}</h5>
+							<p class="card-text reveal fadeInUp" data-delay="600ms"><small
+									class="text-muted">{{direction.city}},
+									{{direction.country}}</small></p>
+							<p class="card-text reveal fadeInUp" data-delay="600ms">Fecha del evento: {{date}}</p>
+							<p class="card-text reveal fadeInUp" data-delay="600ms">Descripción: <br> {{description}}.
+							</p>
+							<div class="row">
+								<div class="col-md-6">
 
-				<button type="submit" class="btn btn-dark mt-4"> Aceptar </button>
-				
-			</form> 
 
-            <form action="/admin/{{id}}/eventos/borrar" method="POST">
-                <button type="submit" class="btn btn-dark mt-4"> Rechazar </button>
-            </form>
+									<form action="/admin/usuarios/empresas/{{id}}/eventos/aceptar" method='POST'>
+										<button type="submit" class="btn btn-success btn-block"> Aceptar </button>
+									</form>
+								</div>
+								<div class="col-md-6">
+									<form action="/admin/usuarios/empresas/{{id}}/eventos/borrar" method="POST">
+										<button type="submit" class="btn btn-danger btn-block"> Rechazar </button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+	</div>
+</section>
+{{/each}}
 
-	{{/each}}
-</div>
+
+<script src="/js/background-texture.js"></script>

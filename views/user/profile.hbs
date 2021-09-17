@@ -1,47 +1,49 @@
-<div class='container'>
+<div class='container margin-top'>
 
-
+	<h1 class="text-white text-center reveal fadeInRight" data-delay="300ms"> Bienvenido {{name}} </h1>
 
 	<div class='container mt-5'>
 		<div class='row justify-content-center'>
 
-			<div class='col-md-6'>
-
-				<div class='card' style='width: 18rem;'>
+			<div class='col-md-5 text-white'>
+				
+				<div class="card transparent p-5 reveal fadeInUp" data-delay="600ms">
 					<img class='card-img-top' src='{{image}}' alt='{{name}}' />
-					<div class='card-body'>
-						<h5 class='card-title'>{{name}}</h5>
-						<hr />
+					<div class="card-body reveal fadeInLeft" data-delay="900ms">
+						<h5 class='card-title font-weight-bold'>Nombre:</h5>
+						 {{name}}
 					</div>
 
-					<div class='card-body'>
-						<h5>{{email}}</h5>
-						<div class='row justify-content-center'>
-							<div class='col-md-6'>
+					<div class="card-body reveal fadeInLeft" data-delay="900ms">
+						<h5 class="font-weight-bold">Correo Electrónico: </h5>
+						{{email}}
+						<div class='row justify-content-center mt-3'>
 								<a href='user/editar-perfil/{{id}}' class='card-link btn btn-dark btn-block'>Editar</a>
-							</div>
-							<div class='col-md-6'>
+							{{!-- <div class='col-md-6'> --}}
 
 								{{!-- MIDLEWARE PARA ADMIN --}}
 
 								{{! MIDDLEWARE PARA USER }}
 
-								<form action="/user/buscar-usuarios/{{id}}/agregar" method="POST">
+								{{!-- <form action="/user/buscar-usuarios/{{id}}/agregar" method="POST">
 									<input type="text" name="route" value="clientes" hidden>
 									<button class="card-link btn btn-primary btn-block" name="id" value="{{id}}">Añadir
 										a
 										amigos</button>
-								</form>
-							</div>
+								</form> --}}
+							{{!-- </div> --}}
 						</div>
 					</div>
 				</div>
 
-				<a href="/" class="btn btn-primary"> Volver </a>
 			</div>
 
+		</div>
+		<div class="d-flex flex-row-reverse">
+				<a href="/" class="btn btn-dark border-white mt-5"> Volver </a>
 		</div>
 	</div>
 	<br>
 
 </div>
+<script src="../../js/background-texture.js"></script>

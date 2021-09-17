@@ -4,7 +4,7 @@ const Group = require('../models/Group.model')
 const {isLoggedIn, checkId, checkRoles} = require('../middleware')
 const CDNupload = require('../config/cloudynary.config')
 
-router.get('/', isLoggedIn, checkRoles('client'), (req, res) => {
+router.get('/', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 
 	const id = req.session.currentUser._id
 
@@ -15,7 +15,7 @@ router.get('/', isLoggedIn, checkRoles('client'), (req, res) => {
 })
 
 
-router.get('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
+router.get('/editar-perfil/:id', isLoggedIn, checkId, checkRoles('client', 'admin'), (req, res) => {
 
 	const {id} = req.params
 	
@@ -42,30 +42,36 @@ router.post('/editar-perfil/:id', CDNupload.single('image') ,isLoggedIn, checkId
 })
 
 
-router.get('/buscar-usuarios', isLoggedIn, checkRoles('client'), (req, res) => {
-	User
-		.find({rol: 'client'})
-		.then((clients) => res.render('admin/list-clients', {clients}))
-		.catch((err) => console.log(err))
-})
+router.get('/buscar-usuarios', isLoggedIn, (req, res) => {
 
-
-router.post('/buscar-usuarios/:id/agregar', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
-
-	const user = req.session.currentUser
-	const {id} = req.body
+	const user = req.session.currentUser._id
 
 	User
-		.findByIdAndUpdate(user._id, {$push: {friends: id}}, {new: true})
-		.then((user) => {
-			req.session.currentUser = user
-			res.redirect('/user/buscar-usuarios')
+		.find({"rol": "client"})
+		.populate('friends')
+		.then((clients) => {
+			res.render('admin/list-clients', {clients})
 		})
 		.catch((err) => console.log(err))
 })
 
 
-router.get('/grupos', isLoggedIn, checkRoles('client'), (req, res) => {
+router.post('/buscar-usuarios/:id/agregar', isLoggedIn, checkId, checkRoles('client', 'admin'), (req, res) => {
+
+	const user = req.session.currentUser
+	const {id} = req.body
+	console.log(user, id)
+	User
+		.findByIdAndUpdate(user._id, {$push: {friends: id}}, {new: true})
+		.then((user) => {
+			req.session.currentUser = user
+			res.redirect('/user/amigos')
+		})
+		.catch((err) => console.log(err))
+})
+
+
+router.get('/grupos', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 
 	const id = req.session.currentUser._id
 
@@ -76,19 +82,20 @@ router.get('/grupos', isLoggedIn, checkRoles('client'), (req, res) => {
 })
 
 
-router.get('/amigos', isLoggedIn, checkRoles('client'), (req, res) => {
+router.get('/amigos', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 
 	const id = req.session.currentUser._id
 
 	User
 		.findById(id)
 		.populate('friends')
+		// .then(user => res.send(user))
 		.then((user) => res.render('user/friends', user))
 		.catch((err) => console.log(err))
 })
 
 
-router.get('/grupos/crear', isLoggedIn, checkRoles('client'), (req, res) => {
+router.get('/grupos/crear', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 
 	const id = req.session.currentUser._id
 
@@ -100,7 +107,7 @@ router.get('/grupos/crear', isLoggedIn, checkRoles('client'), (req, res) => {
 })
 
 
-router.post('/grupos/crear', isLoggedIn, checkRoles('client'), (req, res) => {
+router.post('/grupos/crear', isLoggedIn, checkRoles('client', 'admin'), (req, res) => {
 
 	const {title, users} = req.body
 	const owner = req.session.currentUser._id
@@ -112,7 +119,7 @@ router.post('/grupos/crear', isLoggedIn, checkRoles('client'), (req, res) => {
 })
 
 
-router.get('/grupos/:id', isLoggedIn, checkId, checkRoles('client'), (req, res) => {
+router.get('/grupos/:id', isLoggedIn, checkId, checkRoles('client', 'admin'), (req, res) => {
 
 	const {id} = req.params
 	const user = req.session.currentUser

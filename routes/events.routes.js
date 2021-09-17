@@ -48,7 +48,7 @@ router.post('/:id/contacto', isLoggedIn, checkId, checkRoles('client'), (req, re
 			text: message,
 			html: `<b>${message}</b><br/>CLIENTE: ${from}`,
 		})
-		.then((info) => res.send(info))
+		.then((info) => res.redirect('/events'))
 		.catch(err => console.log(err))
 })
 
